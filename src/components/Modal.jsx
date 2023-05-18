@@ -2,15 +2,15 @@
 
 import { AddTodoItem } from "./AddTodoItem";
 
-export const Modal = () => {
+export const Modal = show => {
   return (
     <div
       style={{
         width: "100%",
         height: "100vh",
-        zIndex: 3,
+        zIndex: 5,
         background: "rgba(0,0,0,0.1)",
-        display: "flex",
+        display: show?"flex":"none",
         placeItems: "center",
       }}
     >

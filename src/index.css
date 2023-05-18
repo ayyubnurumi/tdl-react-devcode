@@ -71,3 +71,20 @@ main {
   font-weight: 600;
 }
 /* #endregion --app */
+
+/* #region --itemlist */
+.dropdown {
+  position: relative;
+}
+.sortbtn{
+  cursor: pointer;
+}
+.dropdown-content{
+  display: flex;
+  position: absolute;
+  margin-top: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  /* z-index: 1; */
+}
+
+/* #endregion --itemlist */

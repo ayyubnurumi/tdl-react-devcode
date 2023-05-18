@@ -1,23 +1,16 @@
-// import React from 'react'
+import { useState } from "react";
 import edit from "../assets/icon-edit-p.4ebec345.svg";
 import emptyTodo from "../assets/todo-empty-state.png";
-import sort from "../assets/icon-sort.197e6f4f.svg";
-import atoz from "../assets/sort/Group.svg";
-import ztoa from "../assets/sort/Group-1.svg";
-import baru from "../assets/sort/Group-4.svg";
-import lama from "../assets/sort/Group-2.svg";
-import notdone from "../assets/sort/Group-3.svg";
+import { Modal } from "../components/Modal";
+import { Sort } from "../components/Sort";
 
 import { TodoItem } from "../components/TodoItem";
 
 export const ItemList = () => {
-  const sortList = [
-    { icon: baru, text: "Terbaru" },
-    { icon: lama, text: "Terlama" },
-    { icon: atoz, text: "A-Z" },
-    { icon: ztoa, text: "Z-A" },
-    { icon: notdone, text: "Belum Selesai" },
-  ];
+  const [show, setShow] = useState(false);
+  const addTodo = () => {
+    setShow(!show);
+  };
   return (
     <>
       <div className="section-header">
@@ -27,42 +20,13 @@ export const ItemList = () => {
           <img src={edit} alt="edit" />
         </div>
         <div style={{ display: "flex", gap: "20px", placeItems: "center" }}>
-          <div className="dropdown">
-            <button
-              className="sortbtn"
-              style={{ width: "54px", height: "54px", borderRadius: "50px" }}
-            >
-              <img src={sort} alt="sort-btn" />
-            </button>
-            <div
-              className="dropdown-content"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "235px",
-                height: "260px",
-              }}
-            >
-              {sortList.map((item, i) => {
-                return (
-                  <button
-                    key={i}
-                    style={{
-                      flex: "1 1",
-                      borderRadius: 0,
-                      border: "1px solid #e5e5e5",
-                      background: "#fff",
-                    }}
-                  >
-                    <img src={item.icon} alt={item.text} /> {item.text}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-          <button className="add-btn">+ tambah</button>
+          <Sort />
+          <button onClick={addTodo} className="add-btn">
+            + tambah
+          </button>
         </div>
       </div>
+        <Modal show={show} />
       <div className="section-body" style={{ gap: ".4rem" }}>
         <TodoItem />
         <img
