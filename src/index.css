@@ -1,5 +1,7 @@
 /* #region --index */
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,38 +9,65 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  padding-top: 105px;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #242424;
+  background-color: #f4f4f4;
 
-  font-synthesis: none;
+  /* font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; */
 }
 
 body {
   min-width: 100%;
   min-height: 100vh;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #f4f4f4;
-  }
-}
 /* #endregion --index */
 
 /* #region --app */
 nav#header {
-  height: 5rem;
+  position: fixed;
+  top: 0;
+  height: 105px;
+  width: 100%;
+  padding-inline: 200px;
   background-color: #16abf8;
   display: flex;
   place-items: center;
+}
+
+main {
+  padding-inline: 200px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0;
+}
+
+.section-body {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.section-title{
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.add-btn {
+  width: 159px;
+  height: 54px;
+  background-color: #16abf8;
+  color: #f4f4f4;
+  border-radius: 45px;
+  font-size: 18px;
+  font-weight: 600;
 }
 /* #endregion --app */
