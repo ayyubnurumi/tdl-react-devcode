@@ -13,6 +13,7 @@ export const Dasboard = () => {
   useEffect(() => {
     get(setData)
   }, [get, setData]);
+  console.log(data);
   return (
     <>
       <div className="section-header">
@@ -20,7 +21,7 @@ export const Dasboard = () => {
         <button onClick={addActivity} className="add-btn">+ tambah</button>
       </div>
       <div className="section-body">
-        {data?(
+        {data && data.length > 0 ? (
           <ActivityCard />
         ):(
           <img style={{flex: "0 1 100%", marginBottom: "30px"}} src={emptyActivity} alt="empty-state" />

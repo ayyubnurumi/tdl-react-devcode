@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://todo.api.devcode.gethired.id/";
 
-const getActivity = (setData) => {
+const getActivity = ({setData}) => {
   axios
     .get("activity-groups", {
       params: { email: "ayyubbabdulrahman17@gmail.com" },
@@ -24,7 +24,6 @@ const createActivity = () => {
     })
     .then((res) => {
       const data = res.data;
-      getActivity()
       console.log(data);
     })
     .catch((err) => {

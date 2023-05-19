@@ -11,7 +11,7 @@ export const ActivityCard = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        flex: "1 1 23%",
+        flex: "0 1 24%",
         padding: "17px",
         height: "234px",
         borderRadius: "11px",
