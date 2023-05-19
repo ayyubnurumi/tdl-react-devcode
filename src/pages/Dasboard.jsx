@@ -1,17 +1,18 @@
 // import React from 'react'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import emptyActivity from "../assets/activity-empty-state.png";
 import { ActivityCard } from "../components/ActivityCard";
 import { activity } from "../services/services";
 
 export const Dasboard = () => {
+  const [data, setData] = useState();
   const [get, create,,] = activity
   const addActivity = () => {
     create()
   }
   useEffect(() => {
-    get()
-  }, [get]);
+    get(setData)
+  }, [get, setData]);
   return (
     <>
       <div className="section-header">
@@ -19,8 +20,11 @@ export const Dasboard = () => {
         <button onClick={addActivity} className="add-btn">+ tambah</button>
       </div>
       <div className="section-body">
-        <ActivityCard />
-        <img style={{flex: "0 1 100%", marginBottom: "30px"}} src={emptyActivity} alt="empty-state" />
+        {data?(
+          <ActivityCard />
+        ):(
+          <img style={{flex: "0 1 100%", marginBottom: "30px"}} src={emptyActivity} alt="empty-state" />
+        )}
       </div>
     </>
   );
