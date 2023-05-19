@@ -2,33 +2,24 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://todo.api.devcode.gethired.id/";
 
-const getActivity = ({setData}) => {
+const getActivity = (setData) => {
   axios
-    .get("activity-groups", {
-      params: { email: "ayyubbabdulrahman17@gmail.com" },
-    })
-    .then((res) => {
-      setData(res.data)
-      console.log(res);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    .get("activity-groups?email=ayyubabdulrahman17%40gmail.com")
+    .then((res) => setData(res.data.data))
+    .catch((err) => console.error(err));
 };
 
-const createActivity = () => {
+const createActivity = (data, setData) => {
   axios
     .post("activity-groups", {
       title: "New Activity",
       email: "ayyubabdulrahman17@gmail.com",
     })
     .then((res) => {
-      const data = res.data;
-      console.log(data);
+      setData(...data, res.data)
+      console.log(res);
     })
-    .catch((err) => {
-      console.error(err);
-    });
+    .catch((err) => console.log(err));
 };
 
 const updateActivity = ({ id, title }) => {
@@ -37,28 +28,24 @@ const updateActivity = ({ id, title }) => {
     .then((res) => {
       console.log(res);
     })
-    .catch((err) => {
-      console.error(err);
-    });
+    .catch((err) => console.log(err));
 };
 
-const removeActivity = ({ id }) => {
+const removeActivity = (id) => {
   axios
     .delete(`activity-groups/${id}`)
     .then((res) => {
       console.log(res);
     })
-    .catch((err) => {
-      console.error(err);
-    });
+    .catch((err) => console.log(err));
 };
 
-export const activity = [
+export const activity = {
   getActivity,
   createActivity,
   updateActivity,
   removeActivity,
-];
+};
 
 const getItem = ({ actid }) => {
   axios

@@ -7,7 +7,7 @@ import { ItemList } from "./pages/ItemList";
 function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Dasboard /> },
-    { path: "item-list", element: <ItemList /> },
+    { path: "item-list/:id", element: <ItemList /> },
   ]);
   return (
     <>

@@ -26,7 +26,7 @@ export const ItemList = () => {
           </button>
         </div>
       </div>
-        <Modal show={show} />
+      <Modal show={show} />
       <div className="section-body" style={{ gap: ".4rem" }}>
         <TodoItem />
         <img
