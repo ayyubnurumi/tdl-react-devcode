@@ -13,6 +13,7 @@ export const ItemList = () => {
   };
   return (
     <>
+      <Modal show={show} setShow={setShow} />
       <div className="section-header">
         <div style={{ display: "flex", gap: "20px", placeItems: "center" }}>
           <span>&lt;</span>
@@ -26,7 +27,6 @@ export const ItemList = () => {
           </button>
         </div>
       </div>
-      <Modal show={show} />
       <div className="section-body" style={{ gap: ".4rem" }}>
         <TodoItem />
         <img

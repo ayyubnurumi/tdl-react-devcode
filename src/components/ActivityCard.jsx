@@ -1,6 +1,7 @@
 // import React from 'react'
 import { useNavigate } from "react-router-dom";
 import del from "../assets/icon-delete.1e080ddb.svg";
+import { activity } from "../services/services";
 
 export const ActivityCard = (data) => {
   const nav = useNavigate();
@@ -26,6 +27,7 @@ export const ActivityCard = (data) => {
           src={del}
           alt="delete"
           style={{ cursor: "pointer" }}
+          onClick={() => activity.removeActivity(data.data.id)}
         />
       </div>
     </div>
