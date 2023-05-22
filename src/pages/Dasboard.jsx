@@ -37,7 +37,7 @@ export const Dasboard = () => {
           })
         ) : (
           <img
-            style={{ flex: "0 1 100%", marginBottom: "30px" }}
+            style={{ flex: "0 1", height: "413px", marginInline: "auto"}}
             src={emptyActivity}
             alt="empty-state"
           />

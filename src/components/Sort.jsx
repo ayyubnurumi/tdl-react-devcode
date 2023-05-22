@@ -23,8 +23,7 @@ export const Sort = () => {
     <div className="dropdown">
       <button
         onClick={showDropdown}
-        className="sortbtn"
-        style={{ width: "54px", height: "54px", borderRadius: "50px" }}
+        style={{position: "relative", width: "54px", height: "54px", borderRadius: "50px", cursor: "pointer", zIndex: 0 }}
       >
         <img src={sort} alt="sort-btn" />
       </button>
