@@ -37,9 +37,9 @@ export const AddTodoItem = () => {
           gap: "10px",
         }}
       >
-        <label htmlFor="itemTitle"></label>
+        <label htmlFor="itemTitle">Nama List Item</label>
         <input id="itemTitle" type="text" />
-        <label htmlFor="itemPrioty"></label>
+        <label htmlFor="itemPrioty">Priority</label>
         <select name="itemPrioty" id="itemPriority" style={{height: "52px", width: "205px"}}>
           {priority.map((item, i) => {
             return (
