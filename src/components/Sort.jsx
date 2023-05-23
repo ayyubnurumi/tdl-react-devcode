@@ -43,8 +43,13 @@ export const Sort = () => {
               style={{
                 flex: "1 1",
                 borderRadius: 0,
+                paddingInline: "17px",
                 border: "1px solid #e5e5e5",
                 background: "#fff",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: "17px",
               }}
             >
               <img src={item.icon} alt={item.text} /> {item.text}
