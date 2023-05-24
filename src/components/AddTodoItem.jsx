@@ -25,7 +25,7 @@ export const AddTodoItem = () => {
         }}
       >
         <h3>tambah list item</h3>
-        <button style={{border: "none", background: "none"}}>x</button>
+        <button style={{ border: "none", background: "none" }}>x</button>
       </div>
       <hr />
       <form
@@ -49,31 +49,26 @@ export const AddTodoItem = () => {
           }}
         />
         <label htmlFor="itemPrioty">Priority</label>
-        <select
+        <button
           name="itemPrioty"
           id="itemPriority"
           style={{ height: "52px", width: "205px" }}
-        >
+        />
           {priority.map((item, i) => {
             return (
-              <option
-                key={i}
-                value={item.value}
-                style={{ display: "flex", gap: "11px", placeItems: "center" }}
-              >
+              <button key={i} style={{display: "flex", }}>
                 <span
-                  style={{
-                    width: "9px",
-                    height: "9px",
-                    borderRadius: "50%",
-                    background: item.color,
-                  }}
-                />{" "}
-                {item.name}
-              </option>
+                    style={{
+                      width: "11px",
+                      height: "11px",
+                      borderRadius: "50%",
+                      background: item.color,
+                    }}
+                  />{" "}
+                  {item.name}
+              </button>
             );
           })}
-        </select>
       </form>
       <hr />
       <input
