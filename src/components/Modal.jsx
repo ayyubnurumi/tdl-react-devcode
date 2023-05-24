@@ -1,5 +1,6 @@
 import PropType from "prop-types";
-import { AddTodoItem } from "./AddTodoItem";
+import { ConfirmRemove } from "./ConfirmRemove";
+// import { AddTodoItem } from "./AddTodoItem";
 
 const Modal = ({ show, setShow }) => {
   const modal = document.getElementById("modal");
@@ -22,7 +23,8 @@ const Modal = ({ show, setShow }) => {
         alignItems: "center",
       }}
     >
-      <AddTodoItem />
+      {/* <AddTodoItem /> */}
+      <ConfirmRemove />
     </div>
   );
 };

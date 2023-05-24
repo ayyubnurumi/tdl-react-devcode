@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import emptyActivity from "../assets/activity-empty-state.png";
-import { ActivityCard } from "../components/ActivityCard";
+import ActivityCard from "../components/ActivityCard";
 import { activity } from "../services/services";
+import Modal from "../components/Modal";
 
 export const Dasboard = () => {
+  const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
 
   const fetchActivity = () => {
@@ -22,6 +24,7 @@ export const Dasboard = () => {
 
   return (
     <>
+    <Modal show={show} setShow={setShow} />
       <div className="section-header">
         <h2>Activity</h2>
         <button onClick={addActivity} className="add-btn">
@@ -32,7 +35,7 @@ export const Dasboard = () => {
         {data?.length > 0 ? (
           data.map((item) => {
             return (
-              <ActivityCard key={item.id} data={item} />
+              <ActivityCard key={item.id} data={item} setShow={setShow} show={show}/>
             );
           })
         ) : (
