@@ -1,12 +1,14 @@
 import PropType from "prop-types";
 import { AddTodoItem } from "./AddTodoItem";
 
-const Modal = ({show, setShow}) => {
-  const modal = document.getElementById.modal
+const Modal = ({ show, setShow }) => {
+  const modal = document.getElementById("modal");
   return (
     <div
-    id="modal"
-      onClick={(e) => {if(e.target === modal)setShow(!show)}}
+      id="modal"
+      onClick={(e) => {
+        if (e.target === modal) setShow(!show);
+      }}
       style={{
         width: "100vw",
         height: "100vh",

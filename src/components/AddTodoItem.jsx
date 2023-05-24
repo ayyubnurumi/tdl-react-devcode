@@ -1,78 +1,86 @@
-// import React from 'react'
+import { useState } from "react";
 
 export const AddTodoItem = () => {
-  const priority = [
+  const [show, setshow] = useState(false);
+  const [item, setItem] = useState({
+    title: "",
+    priority: "",
+    color: "",
+  });
+  const priorityList = [
     { name: "Very High", color: "#ED4C5C", value: "very-high" },
     { name: "High", color: "#F8A541", value: "high" },
     { name: "Medium", color: "#00A790", value: "medium" },
     { name: "Low", color: "#428BC1", value: "low" },
     { name: "Very Low", color: "#8942C1", value: "very-low" },
   ];
+  const onSubmit = () => {
+    console.log(item);
+  };
   return (
-    <div
-      style={{
-        width: "490px",
-        background: "#fff",
-        borderRadius: "11px",
-      }}
-    >
-      <div
-        style={{
-          padding: "24px 40px 19px 28px",
-          display: "flex",
-          justifyContent: "space-between",
-          placeItems: "center",
-        }}
-      >
+    <div className="todo-form-container">
+      <div className="todo-form-header">
         <h3>tambah list item</h3>
         <button style={{ border: "none", background: "none" }}>x</button>
       </div>
       <hr />
-      <form
-        style={{
-          padding: "38px 40px 23px 28px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-        }}
-      >
+      <form id="add-item" onSubmit={onSubmit}>
         <label htmlFor="itemTitle">Nama List Item</label>
         <input
           id="itemTitle"
           type="text"
-          style={{
-            width: "100%",
-            height: "52px",
-            borderRadius: "6px",
-            background: "#FFFFFF",
-            border: "1px solid #16ABF8",
-          }}
+          onChange={(e) => setItem({ ...item, title: e.target.value })}
         />
-        <label htmlFor="itemPrioty">Priority</label>
-        <button
-          name="itemPrioty"
-          id="itemPriority"
-          style={{ height: "52px", width: "205px" }}
-        />
-          {priority.map((item, i) => {
-            return (
-              <button key={i} style={{display: "flex", }}>
-                <span
-                    style={{
-                      width: "11px",
-                      height: "11px",
-                      borderRadius: "50%",
-                      background: item.color,
-                    }}
-                  />{" "}
-                  {item.name}
-              </button>
-            );
-          })}
+        <div className="priority-dropdown-container">
+          <label htmlFor="itemPriority">Priority</label>
+          <input
+            onClick={() => setshow(!show)}
+            name="itemPriority"
+            id="itemPriority"
+            readOnly
+            value={item.priority ? item.priority : "pilih priority :"}
+          />
+          <div
+            className="priority-dropdown"
+            style={{
+              display: show ? "block" : "none",
+            }}
+          >
+            {priorityList.map((data, i) => {
+              return (
+                <div key={i} className="priority-dropdown-item">
+                  <input
+                    type="radio"
+                    name="itemPriority"
+                    id={data.name}
+                    value={data.value}
+                    onChange={() =>
+                      setItem({
+                        ...item,
+                        priority: data.value,
+                        color: data.color,
+                      })
+                    }
+                  />
+                  <label htmlFor={data.name}>
+                    <span
+                      className="priority-dot"
+                      style={{
+                        background: data.color,
+                      }}
+                    />{" "}
+                    {data.name}
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </form>
       <hr />
-      <input
+      <button
         type="submit"
+        form="add-item"
         className="add-btn"
         style={{ margin: "15px 40px 19px auto", float: "right" }}
       />
