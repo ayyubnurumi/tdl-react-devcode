@@ -4,10 +4,11 @@ import del from "../assets/icon-delete.1e080ddb.svg";
 import PropType from "prop-types";
 // import { activity } from "../services/services";
 
-const ActivityCard = ({ data, setShow, show }) => {
+const ActivityCard = ({ data, setShow, show, isActivity, setIsActivity }) => {
   const nav = useNavigate();
   return (
     <div
+      id="activity-card"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -18,10 +19,14 @@ const ActivityCard = ({ data, setShow, show }) => {
         borderRadius: "11px",
         backgroundColor: "#fff",
       }}
+      onClick={(e) => {
+        if (e.target === document.getElementById("activity-card")) {
+          nav(`item-list/${data.id}`);
+          setIsActivity(!isActivity)
+        }
+      }}
     >
-      <h3 onClick={() => nav(`item-list/${data.id}`)}>
-        {data.title}
-      </h3>
+      <h3>{data.title}</h3>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <p style={{ color: "#888888" }}>{data.created_at}</p>
         <img
@@ -39,6 +44,8 @@ ActivityCard.propTypes = {
   data: PropType.object.isRequired,
   show: PropType.bool.isRequired,
   setShow: PropType.func.isRequired,
+  isActivity: PropType.bool,
+  setIsActivity: PropType.func,
 };
 
 export default ActivityCard;

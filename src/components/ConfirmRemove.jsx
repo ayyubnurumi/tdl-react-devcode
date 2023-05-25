@@ -2,13 +2,13 @@
 import removeAlert from "../assets/icon-alert.8a9d9385.svg";
 import PropType from "prop-types";
 
-const ConfirmRemove = ({ isActivity, title }) => {
+const ConfirmRemove = ({ isActivity, data }) => {
   const kinda = isActivity ? "activity" : "list item";
   return (
     <div id="remove-container">
       <img src={removeAlert} alt="remove-alert" />
       <p>
-        apakah anda yakin ingin menghapus {kinda} <b>&ldquo;{title}&rdquo;?</b>
+        apakah anda yakin ingin menghapus {kinda} <b>&ldquo;{data.title}&rdquo;?</b>
       </p>
       <div>
         <button className="delete-cancel-btn">batal</button>
@@ -20,7 +20,7 @@ const ConfirmRemove = ({ isActivity, title }) => {
 
 ConfirmRemove.propTypes = {
   isActivity: PropType.bool.isRequired,
-  title: PropType.any.isRequired
+  data: PropType.object.isRequired
 }
 
 export default ConfirmRemove;

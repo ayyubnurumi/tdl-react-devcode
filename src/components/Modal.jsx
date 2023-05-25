@@ -2,7 +2,7 @@ import PropType from "prop-types";
 import ConfirmRemove from "./ConfirmRemove";
 // import { AddTodoItem } from "./AddTodoItem";
 
-const Modal = ({ show, setShow }) => {
+const Modal = ({ show, setShow, data, isActivity }) => {
   const modal = document.getElementById("modal");
   return (
     <div
@@ -24,7 +24,7 @@ const Modal = ({ show, setShow }) => {
       }}
     >
       {/* <AddTodoItem /> */}
-      <ConfirmRemove />
+      <ConfirmRemove data={data} isActivity={isActivity}/>
     </div>
   );
 };
@@ -32,6 +32,8 @@ const Modal = ({ show, setShow }) => {
 Modal.propTypes = {
   show: PropType.bool.isRequired,
   setShow: PropType.func.isRequired,
+  data: PropType.object,
+  isActivity: PropType.bool
 };
 
 export default Modal;
