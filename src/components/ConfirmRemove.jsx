@@ -1,7 +1,26 @@
 // import React from 'react'
+import removeAlert from "../assets/icon-alert.8a9d9385.svg";
+import PropType from "prop-types";
 
-export const ConfirmRemove = () => {
+const ConfirmRemove = ({ isActivity, title }) => {
+  const kinda = isActivity ? "activity" : "list item";
   return (
-    <div>confirmRemove</div>
-  )
+    <div id="remove-container">
+      <img src={removeAlert} alt="remove-alert" />
+      <p>
+        apakah anda yakin ingin menghapus {kinda} <b>&ldquo;{title}&rdquo;?</b>
+      </p>
+      <div>
+        <button className="delete-cancel-btn">batal</button>
+        <button className="delete-confirm-btn">hapus</button>
+      </div>
+    </div>
+  );
+};
+
+ConfirmRemove.propTypes = {
+  isActivity: PropType.bool.isRequired,
+  title: PropType.any.isRequired
 }
+
+export default ConfirmRemove;

@@ -1,5 +1,5 @@
 import PropType from "prop-types";
-import { ConfirmRemove } from "./ConfirmRemove";
+import ConfirmRemove from "./ConfirmRemove";
 // import { AddTodoItem } from "./AddTodoItem";
 
 const Modal = ({ show, setShow }) => {

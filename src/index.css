@@ -155,3 +155,32 @@ input#itemPriority {
 /* #endregion --addItem */
 
 /* #endregion --itemlist */
+
+/* #region --confirmRemove */
+#remove-container {
+  width: 490px;
+  height: 355px;
+  padding: 40px 60px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+#remove-container p {
+  margin: 45px 0;
+}
+.delete-cancel-btn {
+  width: 150px;
+  height: 54px;
+  background: #f4f4f4;
+  border-radius: 45px;
+  margin-right: 20px;
+}
+.delete-confirm-btn {
+  width: 150px;
+  height: 54px;
+  background: #ED4C5C;
+  color: #fff;
+  border-radius: 45px;
+}
+/* #endregion --confirmremove */
