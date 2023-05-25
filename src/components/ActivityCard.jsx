@@ -1,11 +1,9 @@
 // import React from 'react'
-import { useNavigate } from "react-router-dom";
 import del from "../assets/icon-delete.1e080ddb.svg";
 import PropType from "prop-types";
 // import { activity } from "../services/services";
 
-const ActivityCard = ({ data, setShow, show, isActivity, setIsActivity }) => {
-  const nav = useNavigate();
+const ActivityCard = ({ data, setShow, show }) => {
   return (
     <div
       id="activity-card"
@@ -13,18 +11,12 @@ const ActivityCard = ({ data, setShow, show, isActivity, setIsActivity }) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        flex: "1 1 23%",
         padding: "17px",
         height: "234px",
         borderRadius: "11px",
         backgroundColor: "#fff",
       }}
-      onClick={(e) => {
-        if (e.target === document.getElementById("activity-card")) {
-          nav(`item-list/${data.id}`);
-          setIsActivity(!isActivity)
-        }
-      }}
+      
     >
       <h3>{data.title}</h3>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

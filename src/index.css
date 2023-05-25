@@ -54,9 +54,9 @@ main {
 
 .section-body {
   display: flex;
-  gap: 1rem;
+  row-gap: 1rem;
+  column-gap: min(2%, 1rem);
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .section-title {

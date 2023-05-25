@@ -3,11 +3,16 @@ import emptyActivity from "../assets/activity-empty-state.png";
 import ActivityCard from "../components/ActivityCard";
 import { activity } from "../services/services";
 import Modal from "../components/Modal";
+import { useNavigate } from "react-router-dom";
 
 export const Dasboard = () => {
   const [isActivity, setIsActivity] = useState(true);
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
+
+  const nav = useNavigate();
+
+  const cardContainer = document.getElementById("card-container");
 
   const fetchActivity = () => {
     activity.getActivity(setData);
@@ -33,24 +38,32 @@ export const Dasboard = () => {
       </div>
       <div className="section-body">
         {data?.length > 0 ? (
-          data.map((item, i) => {
+          data.map((item) => {
             return (
-              <>
+              <div
+                id="card-container"
+                key={item.id}
+                style={{ flex: "1 1 23%", cursor: "pointer" }}
+                onClick={(e) => {
+                  if (e.target === cardContainer) {
+                    nav(`item-list/${item.id}`);
+                    setIsActivity(!isActivity);
+                  }
+                }}
+              >
                 <ActivityCard
-                  key={item.id}
                   data={item}
                   setShow={setShow}
                   show={show}
                   setIsActivity={setIsActivity}
                 />
                 <Modal
-                  key={i}
                   show={show}
                   setShow={setShow}
                   data={item}
                   isActivity={isActivity}
                 />
-              </>
+              </div>
             );
           })
         ) : (
