@@ -11,9 +11,7 @@ export const Dasboard = () => {
   const [data, setData] = useState([]);
 
   const nav = useNavigate();
-
-  const cardContainer = document.getElementById("card-container");
-
+  
   const fetchActivity = () => {
     activity.getActivity(setData);
   };
@@ -31,7 +29,7 @@ export const Dasboard = () => {
   return (
     <>
       <div className="section-header">
-        <h2>Activity</h2>
+        <h2 className="section-title">Activity</h2>
         <button onClick={addActivity} className="add-btn">
           + tambah
         </button>
@@ -41,15 +39,13 @@ export const Dasboard = () => {
           data.map((item) => {
             return (
               <div
-                id="card-container"
+                id="activity-card-container"
                 key={item.id}
-                style={{ flex: "1 1 23%", cursor: "pointer" }}
-                onClick={(e) => {
-                  if (e.target === cardContainer) {
+                onClick={() => {
                     nav(`item-list/${item.id}`);
                     setIsActivity(!isActivity);
                   }
-                }}
+                }
               >
                 <ActivityCard
                   data={item}
@@ -68,7 +64,6 @@ export const Dasboard = () => {
           })
         ) : (
           <img
-            style={{ flex: "0 1", height: "413px", marginInline: "auto" }}
             src={emptyActivity}
             alt="empty-state"
           />

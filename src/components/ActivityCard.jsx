@@ -15,8 +15,7 @@ const ActivityCard = ({ data, setShow, show }) => {
         height: "234px",
         borderRadius: "11px",
         backgroundColor: "#fff",
-      }}
-      
+      }}     
     >
       <h3>{data.title}</h3>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

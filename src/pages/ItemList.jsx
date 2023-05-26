@@ -30,11 +30,6 @@ export const ItemList = () => {
       <div className="section-body" style={{ gap: ".4rem" }}>
         <TodoItem />
         <img
-          style={{
-            flex: "0 1",
-            height: "413px",
-            marginInline: "auto",
-          }}
           src={emptyTodo}
           alt="empty-state"
         />

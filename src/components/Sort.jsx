@@ -22,8 +22,8 @@ export const Sort = () => {
   return (
     <div className="dropdown">
       <button
+        className="sort-btn"
         onClick={showDropdown}
-        style={{position: "relative", width: "54px", height: "54px", borderRadius: "50px", cursor: "pointer", zIndex: 0 }}
       >
         <img src={sort} alt="sort-btn" />
       </button>
@@ -31,26 +31,12 @@ export const Sort = () => {
         className="dropdown-content"
         style={{
           display: show ? "flex" : "none",
-          flexDirection: "column",
-          width: "235px",
-          height: "260px",
         }}
       >
         {sortList.map((item, i) => {
           return (
             <button
               key={i}
-              style={{
-                flex: "1 1",
-                borderRadius: 0,
-                paddingInline: "17px",
-                border: "1px solid #e5e5e5",
-                background: "#fff",
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                gap: "17px",
-              }}
             >
               <img src={item.icon} alt={item.text} /> {item.text}
             </button>

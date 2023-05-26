@@ -51,19 +51,10 @@ main {
   justify-content: space-between;
   margin: 40px 0;
 }
-
-.section-body {
-  display: flex;
-  row-gap: 1rem;
-  column-gap: min(2%, 1rem);
-  flex-wrap: wrap;
-}
-
 .section-title {
   font-size: 36px;
   font-weight: 700;
 }
-
 .add-btn {
   width: 159px;
   height: 54px;
@@ -73,18 +64,58 @@ main {
   font-size: 18px;
   font-weight: 600;
 }
+
+.section-body {
+  display: flex;
+  row-gap: 1rem;
+  column-gap: min(2%, 1rem);
+  flex-wrap: wrap;
+}
+#activity-card-container {
+  flex: 1 1 23%;
+  cursor: pointer;
+}
+.section-body > img {
+  flex: 0 1;
+  height: 413px;
+  margin-inline: auto;
+}
 /* #endregion --app */
 
 /* #region --itemlist */
+/* #region --sort */
 .dropdown {
   position: relative;
+}
+.sort-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 0;
 }
 .dropdown-content {
   display: flex;
   position: absolute;
   margin-top: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  width: 235px;
+  height: 260px;
 }
+.dropdown-content > button {
+  flex: 1 1;
+  border-radius: 0;
+  padding-inline: 17px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 17px;
+}
+/* #endregion --sort */
+
 /* #region --addItem */
 .todo-form-container {
   width: 830px;
@@ -156,6 +187,21 @@ input#itemPriority {
 
 /* #endregion --itemlist */
 
+/* #region --modal */
+#modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* #endregion --modal */
+
 /* #region --confirmRemove */
 #remove-container {
   width: 490px;
@@ -179,7 +225,7 @@ input#itemPriority {
 .delete-confirm-btn {
   width: 150px;
   height: 54px;
-  background: #ED4C5C;
+  background: #ed4c5c;
   color: #fff;
   border-radius: 45px;
 }
