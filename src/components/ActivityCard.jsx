@@ -4,27 +4,21 @@ import PropType from "prop-types";
 // import { activity } from "../services/services";
 
 const ActivityCard = ({ data, setShow, show }) => {
+  const tanggal = new Date(data.created_at).toLocaleDateString("id-ID", {
+    // weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
   return (
-    <div
-      id="activity-card"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        padding: "17px",
-        height: "234px",
-        borderRadius: "11px",
-        backgroundColor: "#fff",
-      }}
-    >
+    <div id="activity-card">
       <h3>{data.title}</h3>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <p style={{ color: "#888888" }}>{data.created_at}</p>
+      <div>
+        <p>{tanggal}</p>
         <img
-          id="delete-btn"
+          id="delete-activity-btn"
           src={del}
           alt="delete"
-          style={{ cursor: "pointer" }}
           onClick={() => setShow(!show)}
         />
       </div>

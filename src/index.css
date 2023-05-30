@@ -1,4 +1,6 @@
 /* #region --index */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap");
+
 *,
 *::after,
 *::before {
@@ -8,7 +10,7 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Poppins, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   color: #242424;
   background-color: #f4f4f4;
@@ -80,6 +82,27 @@ main {
   height: 413px;
   margin-inline: auto;
 }
+/* #region --activityCard */
+#activity-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 17px;
+  height: 234px;
+  border-radius: 11px;
+  background-color: #fff;
+}
+#activity-card > div {
+  display: flex;
+  justify-content: space-between;
+}
+#activity-card > div > p {
+  color: #888888;
+}
+#activity-card > div > img#delete-activity-btn {
+  cursor: pointer;
+}
+/* #endregion --activityCard */
 /* #endregion --app */
 
 /* #region --itemlist */
@@ -188,7 +211,7 @@ input#itemPriority {
 /* #endregion --itemlist */
 
 /* #region --modal */
-#modal {
+#modal-container {
   width: 100vw;
   height: 100vh;
   position: fixed;

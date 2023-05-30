@@ -3,12 +3,12 @@ import ConfirmRemove from "./ConfirmRemove";
 // import { AddTodoItem } from "./AddTodoItem";
 
 const Modal = ({ show, setShow, data, isActivity }) => {
-  const modal = document.getElementById("modal");
+  // const modalContainer = document.getElementById("modal-container");
   return (
     <div
-      id="modal"
-      onClick={(e) => {
-        if (e.target === modal) setShow(!show);
+      id="modal-container"
+      onClick={() => {
+        setShow(!show)
       }}
       style={{
         display: show ? "flex" : "none",

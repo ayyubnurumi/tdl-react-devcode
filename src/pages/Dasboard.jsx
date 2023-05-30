@@ -14,11 +14,11 @@ export const Dasboard = () => {
 
   const nav = useNavigate();
 
-  const handleActivity = (e, item) => {
+  const handleActivity = (e, id) => {
     const cardContainer = document.getElementById("activity-card-container");
-    const delBtn = document.getElementById("delete-btn");
+    const delBtn = document.getElementById("delete-activity-btn");
     if (e.target === cardContainer && !delBtn) {
-      nav(`item-list/${item.id}`);
+      nav(`item-list/${id}`);
       setIsActivity(!isActivity);
     }
   };
@@ -52,7 +52,7 @@ export const Dasboard = () => {
               <div
                 id="activity-card-container"
                 key={item.id}
-                onClick={(e)=> handleActivity(e, item)}
+                onClick={(e)=> handleActivity(e, item.id)}
               >
                 <ActivityCard
                   data={item}
