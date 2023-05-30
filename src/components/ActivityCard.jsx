@@ -15,12 +15,13 @@ const ActivityCard = ({ data, setShow, show }) => {
         height: "234px",
         borderRadius: "11px",
         backgroundColor: "#fff",
-      }}     
+      }}
     >
       <h3>{data.title}</h3>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <p style={{ color: "#888888" }}>{data.created_at}</p>
         <img
+          id="delete-btn"
           src={del}
           alt="delete"
           style={{ cursor: "pointer" }}
