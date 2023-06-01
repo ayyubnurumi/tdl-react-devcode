@@ -9,14 +9,14 @@ const getActivity = (setData) => {
     .catch((err) => console.error(err));
 };
 
-const createActivity = (data, setData) => {
+const createActivity = (setData) => {
   axios
     .post("activity-groups", {
       title: "New Activity",
       email: "ayyubabdulrahman17@gmail.com",
     })
     .then((res) => {
-      setData(...data, res.data)
+      getActivity(setData);
       console.log(res);
     })
     .catch((err) => console.log(err));

@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
 import emptyActivity from "../assets/activity-empty-state.png";
 import ActivityCard from "../components/ActivityCard";
 import { activity } from "../services/services";
 import Modal from "../components/Modal";
 import { useNavigate } from "react-router-dom";
 
-const ControlFlow = createContext()
+const ControlFlow = createContext();
 
 export const Dasboard = () => {
   const [isActivity, setIsActivity] = useState(true);
@@ -17,28 +17,26 @@ export const Dasboard = () => {
   const handleActivity = (e, id) => {
     const cardContainer = document.getElementById("activity-card-container");
     const delBtn = document.getElementById("delete-activity-btn");
-    if (e.target === cardContainer && !delBtn) {
+    if (e.target == cardContainer && !delBtn) {
       nav(`item-list/${id}`);
       setIsActivity(!isActivity);
     }
   };
-
-  const fetchActivity = () => {
-    activity.getActivity(setData);
-  };
+  
+  const addActivity = useCallback(() => {
+    activity.createActivity(data, setData);
+  },[data]);
 
   useEffect(() => {
-    fetchActivity();
-  }, []);
-
-  const addActivity = () => {
-    activity.createActivity(data, setData);
-  };
+    activity.getActivity(setData);
+  }, [addActivity]);
 
   console.log(data);
 
   return (
-    <ControlFlow.Provider value={{isActivity, show, data}}>
+    <ControlFlow.Provider
+      value={{ isActivity, setIsActivity, show, setShow, data, setData }}
+    >
       <div className="section-header">
         <h2 className="section-title">Activity</h2>
         <button onClick={addActivity} className="add-btn">
@@ -52,7 +50,7 @@ export const Dasboard = () => {
               <div
                 id="activity-card-container"
                 key={item.id}
-                onClick={(e)=> handleActivity(e, item.id)}
+                onClick={(e) => handleActivity(e, item.id)}
               >
                 <ActivityCard
                   data={item}
