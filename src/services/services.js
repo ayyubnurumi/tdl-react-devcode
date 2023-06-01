@@ -22,19 +22,21 @@ const createActivity = (setData) => {
     .catch((err) => console.log(err));
 };
 
-const updateActivity = ({ id, title }) => {
+const updateActivity = ({ id, title, setData }) => {
   axios
     .patch(`activity-groups/${id}`, { title })
     .then((res) => {
+      getActivity(setData)
       console.log(res);
     })
     .catch((err) => console.log(err));
 };
 
-const removeActivity = (id) => {
+const removeActivity = (id, setData) => {
   axios
     .delete(`activity-groups/${id}`)
     .then((res) => {
+      getActivity(setData)
       console.log(res);
     })
     .catch((err) => console.log(err));
