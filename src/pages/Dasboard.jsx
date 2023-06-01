@@ -1,12 +1,11 @@
-import { useEffect, useCallback, useContext } from "react";
+import { useEffect, useCallback, useState } from "react";
 import emptyActivity from "../assets/activity-empty-state.png";
 import ActivityCard from "../components/ActivityCard";
 import { activity } from "../services/services";
 import Modal from "../components/Modal";
-import { ControlFlow } from "../App";
 
 export const Dasboard = () => {
-  const {setData, data} = useContext(ControlFlow);
+  const [data, setData] = useState([]);
 
   const addActivity = useCallback(() => {
     activity.createActivity(setData);

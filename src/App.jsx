@@ -11,7 +11,6 @@ function App() {
   const [isActivity, setIsActivity] = useState(true);
   const [isRemove, setIsRemove] = useState(false);
   const [show, setShow] = useState(false);
-  const [data, setData] = useState([]);
 
   const router = createBrowserRouter([
     { path: "/", element: <Dasboard /> },
@@ -30,9 +29,7 @@ function App() {
             isRemove,
             setIsRemove,
             show,
-            setShow,
-            data,
-            setData,
+            setShow
           }}
         >
           <RouterProvider router={router} />
