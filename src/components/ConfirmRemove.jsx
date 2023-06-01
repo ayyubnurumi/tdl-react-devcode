@@ -1,8 +1,9 @@
 import removeAlert from "../assets/icon-alert.8a9d9385.svg";
-import PropType from "prop-types";
 import { activity } from "../services/services";
+import { useContext } from "react";
 
-const ConfirmRemove = ({ isActivity, data, setData, setShow }) => {
+const ConfirmRemove = () => {
+  const {data, setData, isActivity, setShow} = useContext({data, setData, isActivity, setShow});
   const kinda = isActivity ? "activity" : "list item";
   return (
     <div id="remove-container">
@@ -24,13 +25,6 @@ const ConfirmRemove = ({ isActivity, data, setData, setShow }) => {
       </div>
     </div>
   );
-};
-
-ConfirmRemove.propTypes = {
-  isActivity: PropType.bool.isRequired,
-  data: PropType.object.isRequired,
-  setData: PropType.func,
-  setShow: PropType.func,
 };
 
 export default ConfirmRemove;

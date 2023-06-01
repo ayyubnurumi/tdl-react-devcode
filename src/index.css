@@ -75,7 +75,6 @@ main {
 }
 #activity-card-container {
   flex: 1 1 23%;
-  cursor: pointer;
 }
 .section-body > img {
   flex: 0 1;

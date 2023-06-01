@@ -5,6 +5,7 @@ import Modal from "../components/Modal";
 import { Sort } from "../components/Sort";
 
 import { TodoItem } from "../components/TodoItem";
+// import { activity, toDoItem } from "../services/services";
 
 export const ItemList = () => {
   const [show, setShow] = useState(false);

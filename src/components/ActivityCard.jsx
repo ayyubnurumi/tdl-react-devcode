@@ -1,11 +1,11 @@
-// import React from 'react'
 import { useNavigate } from "react-router-dom";
 import del from "../assets/icon-delete.1e080ddb.svg";
-import PropType from "prop-types";
-// import { activity } from "../services/services";
+import { useContext } from "react";
+import { ControlFlow } from "../App";
 
-const ActivityCard = ({ data, setShow, show, setIsRemove, setIsActivity }) => {
+const ActivityCard = (data) => {
   const nav = useNavigate();
+  const {setShow, setIsActivity, setIsRemove} = useContext(ControlFlow);
   const tanggal = new Date(data.created_at).toLocaleDateString("id-ID", {
     // weekday: "long",
     year: "numeric",
@@ -21,20 +21,11 @@ const ActivityCard = ({ data, setShow, show, setIsRemove, setIsActivity }) => {
           id="delete-activity-btn"
           src={del}
           alt="delete"
-          onClick={() => {setShow(!show); setIsRemove(true)}}
+          onClick={() => {setShow(true); setIsRemove(true)}}
         />
       </div>
     </div>
   );
-};
-
-ActivityCard.propTypes = {
-  data: PropType.object.isRequired,
-  show: PropType.bool.isRequired,
-  setShow: PropType.func.isRequired,
-  isActivity: PropType.bool,
-  setIsActivity: PropType.func,
-  setIsRemove: PropType.func
 };
 
 export default ActivityCard;

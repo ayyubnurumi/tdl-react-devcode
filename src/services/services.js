@@ -93,4 +93,4 @@ const removeItem = ({ id }) => {
     });
 };
 
-export const ToDoItem = [getItem, createItem, updateItem, removeItem];
+export const toDoItem = {getItem, createItem, updateItem, removeItem};

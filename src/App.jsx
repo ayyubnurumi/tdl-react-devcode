@@ -3,8 +3,16 @@ import title from "./assets/header-title.png";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Dasboard } from "./pages/Dasboard";
 import { ItemList } from "./pages/ItemList";
+import { createContext, useState } from "react";
+
+export const ControlFlow = createContext();
 
 function App() {
+  const [isActivity, setIsActivity] = useState(true);
+  const [isRemove, setIsRemove] = useState(false);
+  const [show, setShow] = useState(false);
+  const [data, setData] = useState([]);
+
   const router = createBrowserRouter([
     { path: "/", element: <Dasboard /> },
     { path: "item-list/:id", element: <ItemList /> },
@@ -15,7 +23,20 @@ function App() {
         <img src={title} alt="title" data-cy="header-title" />
       </nav>
       <main>
-        <RouterProvider router={router} />
+        <ControlFlow.Provider
+          value={{
+            isActivity,
+            setIsActivity,
+            isRemove,
+            setIsRemove,
+            show,
+            setShow,
+            data,
+            setData,
+          }}
+        >
+          <RouterProvider router={router} />
+        </ControlFlow.Provider>
       </main>
     </>
   );
