@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import del from "../assets/icon-delete.1e080ddb.svg";
 import { useContext } from "react";
-import { ControlFlow } from "../App";
+import { ActivityData, ControlFlow } from "../App";
 
-const ActivityCard = (data) => {
+const ActivityCard = () => {
+  const data = useContext(ActivityData);
   const nav = useNavigate();
-  const {setShow, setIsActivity, setIsRemove} = useContext(ControlFlow);
+  const { setShow, setIsActivity, setIsRemove } = useContext(ControlFlow);
   const tanggal = new Date(data.created_at).toLocaleDateString("id-ID", {
     // weekday: "long",
     year: "numeric",
@@ -14,14 +15,23 @@ const ActivityCard = (data) => {
   });
   return (
     <div id="activity-card">
-      <h3 onClick={()=>{nav(`item-list/${data.id}`), setIsActivity(false)}}>{data.title}</h3>
+      <h3
+        onClick={() => {
+          nav(`item-list/${data.id}`), setIsActivity(false);
+        }}
+      >
+        {data.title}
+      </h3>
       <div>
         <p>{tanggal}</p>
         <img
           id="delete-activity-btn"
           src={del}
           alt="delete"
-          onClick={() => {setShow(true); setIsRemove(true)}}
+          onClick={() => {
+            setShow(true);
+            setIsRemove(true);
+          }}
         />
       </div>
     </div>

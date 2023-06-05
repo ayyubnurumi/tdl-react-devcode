@@ -3,6 +3,7 @@ import emptyActivity from "../assets/activity-empty-state.png";
 import ActivityCard from "../components/ActivityCard";
 import { activity } from "../services/services";
 import Modal from "../components/Modal";
+import { ActivityData } from "../App";
 
 export const Dasboard = () => {
   const [data, setData] = useState([]);
@@ -31,8 +32,10 @@ export const Dasboard = () => {
                 id="activity-card-container"
                 key={item.id}
               >
-                <ActivityCard data={item} />
-                <Modal data={item} />
+                <ActivityData.Provider value={item}>
+                  <ActivityCard />
+                  <Modal />
+                </ActivityData.Provider>
               </div>
             );
           })

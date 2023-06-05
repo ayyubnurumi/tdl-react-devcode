@@ -1,9 +1,11 @@
+import { ActivityData, ControlFlow } from "../App";
 import removeAlert from "../assets/icon-alert.8a9d9385.svg";
 import { activity } from "../services/services";
 import { useContext } from "react";
 
 const ConfirmRemove = () => {
-  const {data, setData, isActivity, setShow} = useContext({data, setData, isActivity, setShow});
+  const { isActivity, setShow, setRemoveSucces } = useContext(ControlFlow);
+  const data = useContext(ActivityData)
   const kinda = isActivity ? "activity" : "list item";
   return (
     <div id="remove-container">
@@ -18,7 +20,7 @@ const ConfirmRemove = () => {
         </button>
         <button
           className="delete-confirm-btn"
-          onClick={() => {activity.removeActivity(data.id, setData); setShow(false)}}
+          onClick={() => {activity.removeActivity(data.id); setRemoveSucces(true)}}
         >
           hapus
         </button>

@@ -6,10 +6,12 @@ import { ItemList } from "./pages/ItemList";
 import { createContext, useState } from "react";
 
 export const ControlFlow = createContext();
+export const ActivityData = createContext();
 
 function App() {
   const [isActivity, setIsActivity] = useState(true);
   const [isRemove, setIsRemove] = useState(false);
+  const [removeSucces, setRemoveSucces] = useState(false);
   const [show, setShow] = useState(false);
 
   const router = createBrowserRouter([
@@ -28,6 +30,7 @@ function App() {
             setIsActivity,
             isRemove,
             setIsRemove,
+            removeSucces, setRemoveSucces,
             show,
             setShow
           }}

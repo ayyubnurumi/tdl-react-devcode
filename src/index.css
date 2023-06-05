@@ -251,4 +251,21 @@ input#itemPriority {
   color: #fff;
   border-radius: 45px;
 }
+#remove-succes {
+  width: 490px;
+  height: 60px;
+  padding: 20px 30px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  place-items: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+#remove-succes img {
+  width: 24;
+  height: 24px;
+  margin-right: 10px;
+}
 /* #endregion --confirmremove */
