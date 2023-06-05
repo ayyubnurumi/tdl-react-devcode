@@ -5,10 +5,10 @@ import { useContext } from "react";
 
 const ConfirmRemove = () => {
   const { isActivity, setShow, setRemoveSucces } = useContext(ControlFlow);
-  const data = useContext(ActivityData)
+  const data = useContext(ActivityData);
   const kinda = isActivity ? "activity" : "list item";
   return (
-    <div id="remove-container">
+    <div id="remove-container" onClick={(e) => e.stopPropagation()}>
       <img src={removeAlert} alt="remove-alert" />
       <p>
         apakah anda yakin ingin menghapus {kinda}{" "}
@@ -20,7 +20,10 @@ const ConfirmRemove = () => {
         </button>
         <button
           className="delete-confirm-btn"
-          onClick={() => {activity.removeActivity(data.id); setRemoveSucces(true)}}
+          onClick={() => {
+            activity.removeActivity(data.id);
+            setRemoveSucces(true);
+          }}
         >
           hapus
         </button>

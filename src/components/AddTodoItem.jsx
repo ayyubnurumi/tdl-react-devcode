@@ -31,7 +31,7 @@ export const AddTodoItem = () => {
           type="text"
           onChange={(e) => setItem({ ...item, title: e.target.value })}
         />
-        <div className="priority-dropdown-container">
+        <div className="priority-dropdown-container" onClick={e=>e.stopPropagation()}>
           <label htmlFor="itemPriority">Priority</label>
           <input
             onClick={() => setshow(!show)}

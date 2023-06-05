@@ -14,21 +14,21 @@ const ActivityCard = () => {
     day: "numeric",
   });
   return (
-    <div id="activity-card">
-      <h3
-        onClick={() => {
-          nav(`item-list/${data.id}`), setIsActivity(false);
-        }}
-      >
-        {data.title}
-      </h3>
+    <div
+      id="activity-card"
+      onClick={() => {
+        nav(`item-list/${data.id}`), setIsActivity(false);
+      }}
+    >
+      <h3>{data.title}</h3>
       <div>
         <p>{tanggal}</p>
         <img
           id="delete-activity-btn"
           src={del}
           alt="delete"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setShow(true);
             setIsRemove(true);
           }}
