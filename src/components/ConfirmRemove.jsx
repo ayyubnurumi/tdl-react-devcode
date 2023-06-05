@@ -4,7 +4,7 @@ import { activity } from "../services/services";
 import { useContext } from "react";
 
 const ConfirmRemove = () => {
-  const { isActivity, setShow, setRemoveSucces } = useContext(ControlFlow);
+  const { isActivity, setShow, setRemoveSucces, setData } = useContext(ControlFlow);
   const data = useContext(ActivityData);
   const kinda = isActivity ? "activity" : "list item";
   return (
@@ -21,7 +21,7 @@ const ConfirmRemove = () => {
         <button
           className="delete-confirm-btn"
           onClick={() => {
-            activity.removeActivity(data.id);
+            activity.removeActivity(data.id, setData);
             setRemoveSucces(true);
           }}
         >

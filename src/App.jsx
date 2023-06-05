@@ -13,6 +13,7 @@ function App() {
   const [isRemove, setIsRemove] = useState(false);
   const [removeSucces, setRemoveSucces] = useState(false);
   const [show, setShow] = useState(false);
+  const [data, setData] = useState([]);
 
   const router = createBrowserRouter([
     { path: "/", element: <Dasboard /> },
@@ -32,7 +33,7 @@ function App() {
             setIsRemove,
             removeSucces, setRemoveSucces,
             show,
-            setShow
+            setShow, data, setData
           }}
         >
           <RouterProvider router={router} />
