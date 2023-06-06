@@ -6,7 +6,7 @@ import Modal from "../components/Modal";
 import { ActivityData, ControlFlow } from "../App";
 
 export const Dasboard = () => {
-  const {data, setData} = useContext(ControlFlow);
+  const {data, setData, setIsActivity} = useContext(ControlFlow);
 
   const addActivity = useCallback(() => {
     activity.createActivity(setData);
@@ -14,7 +14,8 @@ export const Dasboard = () => {
 
   useEffect(() => {
     activity.getActivity(setData);
-  }, [setData]);
+    setIsActivity(true)
+  }, [setData, setIsActivity]);
 
   return (
     <>

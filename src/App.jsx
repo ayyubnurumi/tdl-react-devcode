@@ -36,7 +36,9 @@ function App() {
             setShow, data, setData
           }}
         >
-          <RouterProvider router={router} />
+          <ActivityData.Provider value={{}}>
+            <RouterProvider router={router} />
+          </ActivityData.Provider>
         </ControlFlow.Provider>
       </main>
     </>
