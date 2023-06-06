@@ -22,21 +22,28 @@ const createActivity = (setData) => {
     .catch((err) => console.log(err));
 };
 
-const updateActivity = ({ id, title, setData }) => {
+const updateActivity = (id, title, setData) => {
   axios
     .patch(`activity-groups/${id}`, { title })
     .then((res) => {
-      getActivity(setData)
+      getActivity(setData);
       console.log(res);
     })
     .catch((err) => console.log(err));
+};
+
+const activityDetail = (id, setData) => {
+  axios
+    .get(`activity-groups/${id}`)
+    .then((res) => setData(res.data))
+    .catch((err) => console.error(err));
 };
 
 const removeActivity = (id, setData) => {
   axios
     .delete(`activity-groups/${id}`)
     .then((res) => {
-      getActivity(setData)
+      getActivity(setData);
       console.log(res);
     })
     .catch((err) => console.log(err));
@@ -46,6 +53,7 @@ export const activity = {
   getActivity,
   createActivity,
   updateActivity,
+  activityDetail,
   removeActivity,
 };
 
@@ -93,4 +101,4 @@ const removeItem = ({ id }) => {
     });
 };
 
-export const toDoItem = {getItem, createItem, updateItem, removeItem};
+export const toDoItem = { getItem, createItem, updateItem, removeItem };
