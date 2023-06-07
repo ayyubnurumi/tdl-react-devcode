@@ -182,14 +182,14 @@ input#itemPriority {
 }
 .priority-dropdown {
   position: absolute;
-  top: 72px;
+  top: 85px;
+  background-color: #fff;
+  border-radius: 5px;
 }
 .priority-dropdown-item {
   display: flex;
   place-items: center;
-  height: 52px;
   width: 205px;
-  border: 1px solid #16abf8;
 }
 .priority-dropdown-item input[type="radio"] {
   visibility: hidden;

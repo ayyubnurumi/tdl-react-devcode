@@ -18,7 +18,7 @@ export const AddTodoItem = () => {
     console.log(item);
   };
   return (
-    <div className="todo-form-container">
+    <div className="todo-form-container" onClick={(e) => e.stopPropagation()}>
       <div className="todo-form-header">
         <h3>tambah list item</h3>
         <button style={{ border: "none", background: "none" }}>x</button>
@@ -31,15 +31,34 @@ export const AddTodoItem = () => {
           type="text"
           onChange={(e) => setItem({ ...item, title: e.target.value })}
         />
-        <div className="priority-dropdown-container" onClick={e=>e.stopPropagation()}>
+        <div className="priority-dropdown-container">
           <label htmlFor="itemPriority">Priority</label>
-          <input
-            onClick={() => setshow(!show)}
-            name="itemPriority"
-            id="itemPriority"
-            readOnly
-            value={item.priority ? item.priority : "pilih priority :"}
-          />
+          <div
+            className="itemPriority-container"
+            style={{
+              display: "flex",
+              placeItems: "center",
+              border: "1px solid black",
+              overflow: "hidden"
+            }}
+          >
+            <span
+              className="priority-dot"
+              style={{
+                background: item.color,
+                margin: "10px",
+                flex: "0 0 9px",
+              }}
+            />
+            <input
+              onClick={() => setshow(!show)}
+              style={{ flex: "0 1", border: "none", outline: "none" }}
+              name="itemPriority"
+              id="itemPriority"
+              readOnly
+              value={item.priority ? item.priority : "pilih priority :"}
+            />
+          </div>
           <div
             className="priority-dropdown"
             style={{
