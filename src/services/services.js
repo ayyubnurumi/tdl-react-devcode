@@ -26,7 +26,7 @@ const updateActivity = (id, title, setData) => {
   axios
     .patch(`activity-groups/${id}`, { title })
     .then((res) => {
-      getActivity(setData);
+      activityDetail(id, setData);
       console.log(res);
     })
     .catch((err) => console.log(err));
