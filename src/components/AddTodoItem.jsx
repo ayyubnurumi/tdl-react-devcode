@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ControlFlow } from "../App";
 
 export const AddTodoItem = () => {
-  const [show, setshow] = useState(false);
+  const {setShow} = useContext(ControlFlow)
+  const [showDD, setShowDD] = useState(false);
+  const [color, setColor] = useState("");
   const [item, setItem] = useState({
+    activity_group_id: 0,
     title: "",
     priority: "",
-    color: "",
   });
+
   const priorityList = [
     { name: "Very High", color: "#ED4C5C", value: "very-high" },
     { name: "High", color: "#F8A541", value: "high" },
@@ -14,9 +18,12 @@ export const AddTodoItem = () => {
     { name: "Low", color: "#428BC1", value: "low" },
     { name: "Very Low", color: "#8942C1", value: "very-low" },
   ];
+  
   const onSubmit = () => {
+    setShow(false);
     console.log(item);
   };
+  
   return (
     <div className="todo-form-container" onClick={(e) => e.stopPropagation()}>
       <div className="todo-form-header">
@@ -24,7 +31,7 @@ export const AddTodoItem = () => {
         <button style={{ border: "none", background: "none" }}>x</button>
       </div>
       <hr />
-      <form id="add-item" onSubmit={onSubmit}>
+      <form id="add-item">
         <label htmlFor="itemTitle">Nama List Item</label>
         <input
           id="itemTitle"
@@ -39,30 +46,36 @@ export const AddTodoItem = () => {
               display: "flex",
               placeItems: "center",
               border: "1px solid black",
-              overflow: "hidden"
+              overflow: "hidden",
             }}
           >
             <span
               className="priority-dot"
               style={{
-                background: item.color,
+                background: color,
                 margin: "10px",
                 flex: "0 0 9px",
               }}
             />
             <input
-              style={{ flex: "0 1 100px", border: "none", width: "100px"}}
+              style={{ flex: "0 1 100px", border: "none", width: "100px" }}
               name="itemPriority"
               id="itemPriority"
               readOnly
               value={item.priority ? item.priority : "pilih priority :"}
             />
-            <button onClick={() => setshow(!show)} >{show? <>&#581;</> : <>&#86;</>}</button>
+            <span
+              onClick={() => {
+                setShowDD(!showDD);
+              }}
+            >
+              {showDD ? <>&#581;</> : <>&#86;</>}
+            </span>
           </div>
           <div
             className="priority-dropdown"
             style={{
-              display: show ? "block" : "none",
+              display: showDD ? "block" : "none",
             }}
           >
             {priorityList.map((data, i) => {
@@ -74,11 +87,11 @@ export const AddTodoItem = () => {
                     id={data.name}
                     value={data.value}
                     onChange={() =>
-                      setItem({
+                      {setItem({
                         ...item,
                         priority: data.value,
-                        color: data.color,
-                      })
+                      });
+                      setColor(data.color)}
                     }
                   />
                   <label htmlFor={data.name}>
@@ -97,11 +110,12 @@ export const AddTodoItem = () => {
         </div>
       </form>
       <hr />
-      <button
-        type="submit"
+      <input
+      type="submit"
         form="add-item"
         className="add-btn"
         style={{ margin: "15px 40px 19px auto", float: "right" }}
+        onSubmit={onSubmit}
       />
     </div>
   );
