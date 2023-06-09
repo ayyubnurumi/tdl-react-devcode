@@ -162,7 +162,6 @@ form#add-item input:focus {
   outline: none;
 }
 input#itemTitle {
-  width: 100%;
   height: 52px;
   border-radius: 6px;
   background: #ffffff;

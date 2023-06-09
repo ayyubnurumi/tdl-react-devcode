@@ -51,14 +51,13 @@ export const AddTodoItem = () => {
               }}
             />
             <input
-              onClick={() => setshow(!show)}
-              style={{ flex: "0 1", border: "none", outline: "none" }}
+              style={{ flex: "0 1 100px", border: "none", width: "100px"}}
               name="itemPriority"
               id="itemPriority"
               readOnly
               value={item.priority ? item.priority : "pilih priority :"}
             />
-            <button></button>
+            <button onClick={() => setshow(!show)} >{show? <>&#581;</> : <>&#86;</>}</button>
           </div>
           <div
             className="priority-dropdown"
