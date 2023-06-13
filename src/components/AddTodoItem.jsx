@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import { ControlFlow, ToDoData } from "../App";
+import { ControlFlow, ToDoData, ToDoItem } from "../App";
 import { toDoItem } from "../services/services";
 
 export const AddTodoItem = () => {
   const { setShow } = useContext(ControlFlow);
   const { todo, setTodo } = useContext(ToDoData);
+  const foo = useContext(ToDoItem);
   const [showDD, setShowDD] = useState(false);
   const [color, setColor] = useState("");
 
@@ -28,6 +29,8 @@ export const AddTodoItem = () => {
     setShow(false);
     setItem(initState);
   };
+
+  console.log(foo);
 
   return (
     <form className="todo-form-container" onClick={(e) => e.stopPropagation()}>

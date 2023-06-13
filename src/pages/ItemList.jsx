@@ -5,12 +5,13 @@ import Modal from "../components/Modal";
 import { Sort } from "../components/Sort";
 
 import { TodoItem } from "../components/TodoItem";
-import { ControlFlow, ToDoData } from "../App";
+import { ControlFlow, ToDoData, ToDoItem } from "../App";
 import { useParams } from "react-router-dom";
 import { activity } from "../services/services";
 
 export const ItemList = () => {
   const { show, setShow } = useContext(ControlFlow);
+  const { setTodoItem, editItem, setEditItem } = useContext(ToDoItem);
   const [update, setUpdate] = useState(false);
   const { actId } = useParams();
 
@@ -30,12 +31,12 @@ export const ItemList = () => {
   };
 
   const handleUpdate = () => {
-      activity.updateActivity(actId, todo.title, setTodo);
-      setUpdate(false);
+    activity.updateActivity(actId, todo.title, setTodo);
+    setUpdate(false);
   };
 
   return (
-    <ToDoData.Provider value={{todo, setTodo}}>
+    <ToDoData.Provider value={{ todo, setTodo }}>
       <Modal />
       <div className="section-header">
         <div style={{ display: "flex", gap: "20px", placeItems: "center" }}>
@@ -47,12 +48,14 @@ export const ItemList = () => {
                 value={todo.title}
                 onChange={(e) => setTodo({ ...todo, title: e.target.value })}
               />
-              <button type="submit" onClick={handleUpdate} ><img src={edit} alt="edit" /></button>
+              <button type="submit" onClick={handleUpdate}>
+                <img src={edit} alt="edit" />
+              </button>
             </form>
           ) : (
             <>
               <h2>{todo.title}</h2>
-              <img src={edit} alt="edit" onClick={()=> setUpdate(true)} />
+              <img src={edit} alt="edit" onClick={() => setUpdate(true)} />
             </>
           )}
         </div>
@@ -65,8 +68,16 @@ export const ItemList = () => {
       </div>
       <div className="section-body" style={{ gap: ".4rem" }}>
         {todo.todo_items.length > 0 ? (
-          todo.todo_items.map((data)=>{
-            return <TodoItem key={data.id} data={data}/>
+          todo.todo_items.map((todoItem) => {
+            return (
+              <div key={todoItem.id}>
+                <ToDoItem.Provider
+                  value={{ todoItem, setTodoItem, editItem, setEditItem }}
+                >
+                  <TodoItem />
+                </ToDoItem.Provider>
+              </div>
+            );
           })
         ) : (
           <img src={emptyTodo} alt="empty-state" />

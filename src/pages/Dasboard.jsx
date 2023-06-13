@@ -3,7 +3,7 @@ import emptyActivity from "../assets/activity-empty-state.png";
 import ActivityCard from "../components/ActivityCard";
 import { activity } from "../services/services";
 import Modal from "../components/Modal";
-import { ActivityData, ControlFlow, ToDoData } from "../App";
+import { ActivityData, ControlFlow, ToDoData, ToDoItem } from "../App";
 
 export const Dasboard = () => {
   const { data, setData, setIsActivity } = useContext(ControlFlow);
@@ -12,6 +12,15 @@ export const Dasboard = () => {
     title: "New Activity",
     created_at: "",
     todo_items: [],
+  });
+
+  const [editItem, setEditItem] = useState(false);
+  const [todoItem, setTodoItem] = useState({
+    activity_group_id: 0,
+    id: 0,
+    is_active: false,
+    priority: "very-high",
+    title: "",
   });
 
   const addActivity = useCallback(() => {
@@ -38,8 +47,10 @@ export const Dasboard = () => {
               <div id="activity-card-container" key={item.id}>
                 <ActivityData.Provider value={item}>
                   <ActivityCard />
-                  <ToDoData.Provider value={{todo, setTodo}}>
-                    <Modal />
+                  <ToDoData.Provider value={{ todo, setTodo }}>
+                    <ToDoItem.Provider value={{ todoItem, setTodoItem, editItem, setEditItem }}>
+                      <Modal />
+                    </ToDoItem.Provider>
                   </ToDoData.Provider>
                 </ActivityData.Provider>
               </div>

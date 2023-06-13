@@ -17,12 +17,13 @@ export const TodoItem = (prop) => {
     return color[name];
   };
 
-  const [dataItem, setDataItem] = useState({
+  const [todoItem, setTodoItem] = useState({
     title: prop.data.title,
     is_active: prop.data.is_active ? true : false,
     priority: prop.data.priority,
   });
 
+  console.log(prop.data);
   return (
     <div
       style={{
@@ -38,11 +39,11 @@ export const TodoItem = (prop) => {
       <div style={{ display: "flex", gap: "11px", placeItems: "center" }}>
         <input
           type="checkbox"
-          name={dataItem.title}
-          id={dataItem.title}
-          value={dataItem.is_active}
+          name={todoItem.title}
+          id={todoItem.title}
+          value={todoItem.is_active}
           onChange={() => {
-            setDataItem({ ...dataItem, is_active: !dataItem.is_active });
+            setTodoItem({ ...todoItem, is_active: !todoItem.is_active });
           }}
         />
         <span
@@ -50,15 +51,15 @@ export const TodoItem = (prop) => {
             width: "9px",
             height: "9px",
             borderRadius: "50%",
-            background: priorityColor(dataItem.priority),
+            background: priorityColor(todoItem.priority),
           }}
         />
         <p
           style={{
-            textDecoration: dataItem.is_active ? "none" : "line-through",
+            textDecoration: todoItem.is_active ? "none" : "line-through",
           }}
         >
-          {dataItem.title}
+          {todoItem.title}
         </p>
         <img src={edit} alt="edit-btn" />
       </div>
