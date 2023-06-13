@@ -65,7 +65,9 @@ export const ItemList = () => {
       </div>
       <div className="section-body" style={{ gap: ".4rem" }}>
         {data.todo_items.length > 0 ? (
-          <TodoItem />
+          data.todo_items.map((data)=>{
+            return <TodoItem key={data.id} data={data}/>
+          })
         ) : (
           <img src={emptyTodo} alt="empty-state" />
         )}

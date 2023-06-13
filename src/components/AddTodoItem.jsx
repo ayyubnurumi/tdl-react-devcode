@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { ControlFlow } from "../App";
 
 export const AddTodoItem = () => {
-  const {setShow} = useContext(ControlFlow)
+  const { setShow } = useContext(ControlFlow);
   const [showDD, setShowDD] = useState(false);
   const [color, setColor] = useState("");
   const [item, setItem] = useState({
@@ -18,20 +18,20 @@ export const AddTodoItem = () => {
     { name: "Low", color: "#428BC1", value: "low" },
     { name: "Very Low", color: "#8942C1", value: "very-low" },
   ];
-  
+
   const onSubmit = () => {
     setShow(false);
     console.log(item);
   };
-  
+
   return (
-    <div className="todo-form-container" onClick={(e) => e.stopPropagation()}>
+    <form className="todo-form-container" onClick={(e) => e.stopPropagation()}>
       <div className="todo-form-header">
         <h3>tambah list item</h3>
         <button style={{ border: "none", background: "none" }}>x</button>
       </div>
       <hr />
-      <form id="add-item">
+      <div id="add-item">
         <label htmlFor="itemTitle">Nama List Item</label>
         <input
           id="itemTitle"
@@ -86,13 +86,13 @@ export const AddTodoItem = () => {
                     name="itemPriority"
                     id={data.name}
                     value={data.value}
-                    onChange={() =>
-                      {setItem({
+                    onChange={() => {
+                      setItem({
                         ...item,
                         priority: data.value,
                       });
-                      setColor(data.color)}
-                    }
+                      setColor(data.color);
+                    }}
                   />
                   <label htmlFor={data.name}>
                     <span
@@ -108,15 +108,15 @@ export const AddTodoItem = () => {
             })}
           </div>
         </div>
-      </form>
+      </div>
       <hr />
-      <input
-      type="submit"
+      <button
+        type="submit"
         form="add-item"
         className="add-btn"
         style={{ margin: "15px 40px 19px auto", float: "right" }}
-        onSubmit={onSubmit}
+        onClick={onSubmit}
       />
-    </div>
+    </form>
   );
 };

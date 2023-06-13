@@ -151,13 +151,13 @@ main {
   justify-content: space-between;
   place-items: center;
 }
-form#add-item {
+div#add-item {
   padding: 38px 40px 23px 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-form#add-item input:focus {
+div#add-item input:focus {
   border: 1px solid #16abf8;
   outline: none;
 }
