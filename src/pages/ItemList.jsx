@@ -15,7 +15,7 @@ export const ItemList = () => {
   const { actId } = useParams();
 
   const [data, setData] = useState({
-    id: 0,
+    id: actId,
     title: "New Activity",
     created_at: "",
     todo_items: [],
@@ -35,7 +35,7 @@ export const ItemList = () => {
   };
 
   return (
-    <ToDoData.Provider value={data}>
+    <ToDoData.Provider value={{data, setData}}>
       <Modal />
       <div className="section-header">
         <div style={{ display: "flex", gap: "20px", placeItems: "center" }}>

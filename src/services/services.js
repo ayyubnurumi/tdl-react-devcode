@@ -68,11 +68,12 @@ const getItem = ({ actid }) => {
     });
 };
 
-const createItem = () => {
+const createItem = (payload, actId, setData) => {
   axios
-    .post("todo-items")
+    .post("todo-items", payload)
     .then((res) => {
       console.log(res);
+      activityDetail(actId, setData)
     })
     .catch((err) => {
       console.error(err);
@@ -90,11 +91,11 @@ const updateItem = ({ id }) => {
     });
 };
 
-const removeItem = ({ id }) => {
+const removeItem = (id, actId, setData) => {
   axios
     .delete(`todo-items/${id}`)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
+      activityDetail(actId, setData)
     })
     .catch((err) => {
       console.error(err);
