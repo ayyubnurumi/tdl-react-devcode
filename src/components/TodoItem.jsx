@@ -4,8 +4,8 @@ import edit from "../assets/icon-edit-p.4ebec345.svg";
 import { toDoItem } from "../services/services";
 import { ToDoData } from "../App";
 
-export const TodoItem = (data) => {
-  const { setData } = useContext(ToDoData);
+export const TodoItem = (prop) => {
+  const { setTodo } = useContext(ToDoData);
   const priorityColor = (name) => {
     const color = {
       "very-high": "#ED4C5C",
@@ -18,12 +18,10 @@ export const TodoItem = (data) => {
   };
 
   const [dataItem, setDataItem] = useState({
-    title: data.data.title,
-    is_active: data.data.is_active ? true : false,
-    priority: data.data.priority,
+    title: prop.data.title,
+    is_active: prop.data.is_active ? true : false,
+    priority: prop.data.priority,
   });
-
-  console.log(dataItem);
 
   return (
     <div
@@ -69,9 +67,9 @@ export const TodoItem = (data) => {
         alt="delete-btn"
         onClick={() =>
           toDoItem.removeItem(
-            data.data.id,
-            data.data.activity_group_id,
-            setData
+            prop.data.id,
+            prop.data.activity_group_id,
+            setTodo
           )
         }
       />

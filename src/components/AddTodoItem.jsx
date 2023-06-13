@@ -1,15 +1,19 @@
 import { useContext, useState } from "react";
-import { ControlFlow } from "../App";
+import { ControlFlow, ToDoData } from "../App";
+import { toDoItem } from "../services/services";
 
 export const AddTodoItem = () => {
   const { setShow } = useContext(ControlFlow);
+  const { todo, setTodo } = useContext(ToDoData);
   const [showDD, setShowDD] = useState(false);
   const [color, setColor] = useState("");
-  const [item, setItem] = useState({
-    activity_group_id: 0,
+
+  const initState = {
+    activity_group_id: todo.id,
     title: "",
     priority: "",
-  });
+  };
+  const [item, setItem] = useState(initState);
 
   const priorityList = [
     { name: "Very High", color: "#ED4C5C", value: "very-high" },
@@ -20,15 +24,16 @@ export const AddTodoItem = () => {
   ];
 
   const onSubmit = () => {
+    toDoItem.createItem(item, todo.id, setTodo);
     setShow(false);
-    console.log(item);
+    setItem(initState);
   };
 
   return (
     <form className="todo-form-container" onClick={(e) => e.stopPropagation()}>
       <div className="todo-form-header">
         <h3>tambah list item</h3>
-        <button style={{ border: "none", background: "none" }}>x</button>
+        <span onClick={() => setShow(false)}>x</span>
       </div>
       <hr />
       <div id="add-item">
@@ -36,7 +41,14 @@ export const AddTodoItem = () => {
         <input
           id="itemTitle"
           type="text"
-          onChange={(e) => setItem({ ...item, title: e.target.value })}
+          required
+          onChange={(e) =>
+            setItem({
+              ...item,
+              title: e.target.value,
+              activity_group_id: todo.id,
+            })
+          }
         />
         <div className="priority-dropdown-container">
           <label htmlFor="itemPriority">Priority</label>
@@ -92,6 +104,7 @@ export const AddTodoItem = () => {
                         priority: data.value,
                       });
                       setColor(data.color);
+                      setShowDD(!showDD);
                     }}
                   />
                   <label htmlFor={data.name}>

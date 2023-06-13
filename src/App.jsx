@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import title from "./assets/header-title.png";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Dasboard } from "./pages/Dasboard";
@@ -32,9 +31,12 @@ function App() {
             setIsActivity,
             isRemove,
             setIsRemove,
-            removeSucces, setRemoveSucces,
+            removeSucces,
+            setRemoveSucces,
             show,
-            setShow, data, setData
+            setShow,
+            data,
+            setData,
           }}
         >
           <RouterProvider router={router} />

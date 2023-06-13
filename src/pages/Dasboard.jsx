@@ -1,12 +1,18 @@
-import { useEffect, useCallback, useContext } from "react";
+import { useEffect, useCallback, useContext, useState } from "react";
 import emptyActivity from "../assets/activity-empty-state.png";
 import ActivityCard from "../components/ActivityCard";
 import { activity } from "../services/services";
 import Modal from "../components/Modal";
-import { ActivityData, ControlFlow } from "../App";
+import { ActivityData, ControlFlow, ToDoData } from "../App";
 
 export const Dasboard = () => {
-  const {data, setData, setIsActivity} = useContext(ControlFlow);
+  const { data, setData, setIsActivity } = useContext(ControlFlow);
+  const [todo, setTodo] = useState({
+    id: 0,
+    title: "New Activity",
+    created_at: "",
+    todo_items: [],
+  });
 
   const addActivity = useCallback(() => {
     activity.createActivity(setData);
@@ -14,7 +20,7 @@ export const Dasboard = () => {
 
   useEffect(() => {
     activity.getActivity(setData);
-    setIsActivity(true)
+    setIsActivity(true);
   }, [setData, setIsActivity]);
 
   return (
@@ -29,13 +35,12 @@ export const Dasboard = () => {
         {data?.length > 0 ? (
           data.map((item) => {
             return (
-              <div
-                id="activity-card-container"
-                key={item.id}
-              >
+              <div id="activity-card-container" key={item.id}>
                 <ActivityData.Provider value={item}>
                   <ActivityCard />
-                  <Modal />
+                  <ToDoData.Provider value={{todo, setTodo}}>
+                    <Modal />
+                  </ToDoData.Provider>
                 </ActivityData.Provider>
               </div>
             );

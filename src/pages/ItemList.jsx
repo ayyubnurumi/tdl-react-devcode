@@ -14,28 +14,28 @@ export const ItemList = () => {
   const [update, setUpdate] = useState(false);
   const { actId } = useParams();
 
-  const [data, setData] = useState({
-    id: actId,
+  const [todo, setTodo] = useState({
+    id: 0,
     title: "New Activity",
     created_at: "",
     todo_items: [],
   });
 
   useEffect(() => {
-    activity.activityDetail(actId, setData);
-  }, [actId, setData]);
+    activity.activityDetail(actId, setTodo);
+  }, [actId, setTodo]);
 
   const addTodo = () => {
     setShow(!show);
   };
 
   const handleUpdate = () => {
-      activity.updateActivity(actId, data.title, setData);
+      activity.updateActivity(actId, todo.title, setTodo);
       setUpdate(false);
   };
 
   return (
-    <ToDoData.Provider value={{data, setData}}>
+    <ToDoData.Provider value={{todo, setTodo}}>
       <Modal />
       <div className="section-header">
         <div style={{ display: "flex", gap: "20px", placeItems: "center" }}>
@@ -44,14 +44,14 @@ export const ItemList = () => {
             <form action="">
               <input
                 type="text"
-                value={data.title}
-                onChange={(e) => setData({ ...data, title: e.target.value })}
+                value={todo.title}
+                onChange={(e) => setTodo({ ...todo, title: e.target.value })}
               />
               <button type="submit" onClick={handleUpdate} ><img src={edit} alt="edit" /></button>
             </form>
           ) : (
             <>
-              <h2>{data.title}</h2>
+              <h2>{todo.title}</h2>
               <img src={edit} alt="edit" onClick={()=> setUpdate(true)} />
             </>
           )}
@@ -64,8 +64,8 @@ export const ItemList = () => {
         </div>
       </div>
       <div className="section-body" style={{ gap: ".4rem" }}>
-        {data.todo_items.length > 0 ? (
-          data.todo_items.map((data)=>{
+        {todo.todo_items.length > 0 ? (
+          todo.todo_items.map((data)=>{
             return <TodoItem key={data.id} data={data}/>
           })
         ) : (
