@@ -37,7 +37,6 @@ export const ItemList = () => {
 
   return (
     <ToDoData.Provider value={{ todo, setTodo }}>
-      <Modal />
       <div className="section-header">
         <div style={{ display: "flex", gap: "20px", placeItems: "center" }}>
           <span>&lt;</span>
@@ -75,6 +74,7 @@ export const ItemList = () => {
                   value={{ todoItem, setTodoItem, editItem, setEditItem }}
                 >
                   <TodoItem />
+                  <Modal />
                 </ToDoItem.Provider>
               </div>
             );

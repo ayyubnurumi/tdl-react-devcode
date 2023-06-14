@@ -5,13 +5,13 @@ import { toDoItem } from "../services/services";
 export const AddTodoItem = () => {
   const { setShow } = useContext(ControlFlow);
   const { todo, setTodo } = useContext(ToDoData);
-  const foo = useContext(ToDoItem);
+  const { todoItem, editItem, setEditItem } = useContext(ToDoItem);
   const [showDD, setShowDD] = useState(false);
   const [color, setColor] = useState("");
 
   const initState = {
     activity_group_id: todo.id,
-    title: "",
+    title: editItem ? todoItem.title : "",
     priority: "",
   };
   const [item, setItem] = useState(initState);
@@ -27,10 +27,15 @@ export const AddTodoItem = () => {
   const onSubmit = () => {
     toDoItem.createItem(item, todo.id, setTodo);
     setShow(false);
-    setItem(initState);
   };
 
-  console.log(foo);
+  const onEdit = () => {
+    console.log(item);
+    setEditItem(false);
+    setShow(false);
+  };
+
+  console.log(todoItem);
 
   return (
     <form className="todo-form-container" onClick={(e) => e.stopPropagation()}>
@@ -44,6 +49,7 @@ export const AddTodoItem = () => {
         <input
           id="itemTitle"
           type="text"
+          value={item.title}
           required
           onChange={(e) =>
             setItem({
@@ -104,7 +110,7 @@ export const AddTodoItem = () => {
                     onChange={() => {
                       setItem({
                         ...item,
-                        priority: data.value,
+                        priority: data.value
                       });
                       setColor(data.color);
                       setShowDD(!showDD);
@@ -131,7 +137,7 @@ export const AddTodoItem = () => {
         form="add-item"
         className="add-btn"
         style={{ margin: "15px 40px 19px auto", float: "right" }}
-        onClick={onSubmit}
+        onClick={editItem ? onEdit : onSubmit}
       />
     </form>
   );

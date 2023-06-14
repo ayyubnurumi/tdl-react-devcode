@@ -16,6 +16,15 @@ function App() {
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
 
+  const [editItem, setEditItem] = useState(false);
+  const [todoItem, setTodoItem] = useState({
+    activity_group_id: 0,
+    id: 0,
+    is_active: false,
+    priority: "very-high",
+    title: "",
+  });
+
   const router = createBrowserRouter([
     { path: "/", element: <Dasboard /> },
     { path: "item-list/:actId", element: <ItemList /> },
@@ -40,7 +49,11 @@ function App() {
             setData,
           }}
         >
-          <RouterProvider router={router} />
+          <ToDoItem.Provider
+            value={{ todoItem, setTodoItem, editItem, setEditItem }}
+          >
+            <RouterProvider router={router} />
+          </ToDoItem.Provider>
         </ControlFlow.Provider>
       </main>
     </>

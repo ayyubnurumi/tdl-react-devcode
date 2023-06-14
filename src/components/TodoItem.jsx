@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import del from "../assets/icon-delete.1e080ddb.svg";
 import edit from "../assets/icon-edit-p.4ebec345.svg";
 import { toDoItem } from "../services/services";
-import { ToDoData } from "../App";
+import { ControlFlow, ToDoData, ToDoItem } from "../App";
 
-export const TodoItem = (prop) => {
+export const TodoItem = () => {
+  const { show, setShow } = useContext(ControlFlow);
   const { setTodo } = useContext(ToDoData);
+  const { todoItem, editItem, setEditItem } = useContext(ToDoItem);
   const priorityColor = (name) => {
     const color = {
       "very-high": "#ED4C5C",
@@ -17,13 +19,12 @@ export const TodoItem = (prop) => {
     return color[name];
   };
 
-  const [todoItem, setTodoItem] = useState({
-    title: prop.data.title,
-    is_active: prop.data.is_active ? true : false,
-    priority: prop.data.priority,
+  const [item, setItem] = useState({
+    title: todoItem.title,
+    is_active: todoItem.is_active ? true : false,
+    priority: todoItem.priority,
   });
 
-  console.log(prop.data);
   return (
     <div
       style={{
@@ -39,11 +40,11 @@ export const TodoItem = (prop) => {
       <div style={{ display: "flex", gap: "11px", placeItems: "center" }}>
         <input
           type="checkbox"
-          name={todoItem.title}
-          id={todoItem.title}
-          value={todoItem.is_active}
+          name={item.title}
+          id={item.title}
+          value={item.is_active}
           onChange={() => {
-            setTodoItem({ ...todoItem, is_active: !todoItem.is_active });
+            setItem({ ...item, is_active: !item.is_active });
           }}
         />
         <span
@@ -51,27 +52,30 @@ export const TodoItem = (prop) => {
             width: "9px",
             height: "9px",
             borderRadius: "50%",
-            background: priorityColor(todoItem.priority),
+            background: priorityColor(item.priority),
           }}
         />
         <p
           style={{
-            textDecoration: todoItem.is_active ? "none" : "line-through",
+            textDecoration: item.is_active ? "none" : "line-through",
           }}
         >
-          {todoItem.title}
+          {item.title}
         </p>
-        <img src={edit} alt="edit-btn" />
+        <img
+          src={edit}
+          alt="edit-btn"
+          onClick={() => {
+            setShow(!show);
+            setEditItem(!editItem);
+          }}
+        />
       </div>
       <img
         src={del}
         alt="delete-btn"
         onClick={() =>
-          toDoItem.removeItem(
-            prop.data.id,
-            prop.data.activity_group_id,
-            setTodo
-          )
+          toDoItem.removeItem(todoItem.id, todoItem.activity_group_id, setTodo)
         }
       />
     </div>
