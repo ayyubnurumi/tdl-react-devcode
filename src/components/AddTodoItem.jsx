@@ -3,15 +3,15 @@ import { ControlFlow, ToDoData, ToDoItem } from "../App";
 import { toDoItem } from "../services/services";
 
 export const AddTodoItem = () => {
-  const { setShow } = useContext(ControlFlow);
+  const { setShow, editItem, setEditItem } = useContext(ControlFlow);
   const { todo, setTodo } = useContext(ToDoData);
-  const { todoItem, editItem, setEditItem } = useContext(ToDoItem);
+  const { todoItem } = useContext(ToDoItem);
   const [showDD, setShowDD] = useState(false);
   const [color, setColor] = useState("");
 
   const initState = {
-    activity_group_id: todo.id,
-    title: editItem ? todoItem.title : "",
+    activity_group_id: 0,
+    title: "",
     priority: "",
   };
   const [item, setItem] = useState(initState);
@@ -40,7 +40,7 @@ export const AddTodoItem = () => {
   return (
     <form className="todo-form-container" onClick={(e) => e.stopPropagation()}>
       <div className="todo-form-header">
-        <h3>tambah list item</h3>
+        <h3>{editItem ? <>edit</> : <>tambah</>} list item</h3>
         <span onClick={() => setShow(false)}>x</span>
       </div>
       <hr />
@@ -105,18 +105,15 @@ export const AddTodoItem = () => {
                   <input
                     type="radio"
                     name="itemPriority"
-                    id={data.name}
+                    id={data.value}
                     value={data.value}
-                    onChange={() => {
-                      setItem({
-                        ...item,
-                        priority: data.value
-                      });
+                    onChange={()=>{
+                      setItem({...item, priority: data.value});
                       setColor(data.color);
-                      setShowDD(!showDD);
+                      setShowDD(!showDD)
                     }}
                   />
-                  <label htmlFor={data.name}>
+                  <label htmlFor={data.value}>
                     <span
                       className="priority-dot"
                       style={{

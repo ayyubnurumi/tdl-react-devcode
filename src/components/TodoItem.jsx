@@ -5,9 +5,9 @@ import { toDoItem } from "../services/services";
 import { ControlFlow, ToDoData, ToDoItem } from "../App";
 
 export const TodoItem = () => {
-  const { show, setShow } = useContext(ControlFlow);
+  const { show, setShow, editItem, setEditItem } = useContext(ControlFlow);
   const { setTodo } = useContext(ToDoData);
-  const { todoItem, editItem, setEditItem } = useContext(ToDoItem);
+  const { todoItem } = useContext(ToDoItem);
   const priorityColor = (name) => {
     const color = {
       "very-high": "#ED4C5C",

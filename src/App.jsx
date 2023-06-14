@@ -15,7 +15,6 @@ function App() {
   const [removeSucces, setRemoveSucces] = useState(false);
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
-
   const [editItem, setEditItem] = useState(false);
   const [todoItem, setTodoItem] = useState({
     activity_group_id: 0,
@@ -47,11 +46,11 @@ function App() {
             setShow,
             data,
             setData,
+            editItem,
+            setEditItem,
           }}
         >
-          <ToDoItem.Provider
-            value={{ todoItem, setTodoItem, editItem, setEditItem }}
-          >
+          <ToDoItem.Provider value={{ todoItem, setTodoItem }}>
             <RouterProvider router={router} />
           </ToDoItem.Provider>
         </ControlFlow.Provider>

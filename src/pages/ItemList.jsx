@@ -10,8 +10,8 @@ import { useParams } from "react-router-dom";
 import { activity } from "../services/services";
 
 export const ItemList = () => {
-  const { show, setShow } = useContext(ControlFlow);
-  const { setTodoItem, editItem, setEditItem } = useContext(ToDoItem);
+  const { show, setShow, editItem, setEditItem } = useContext(ControlFlow);
+  const { setTodoItem } = useContext(ToDoItem);
   const [update, setUpdate] = useState(false);
   const { actId } = useParams();
 
