@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ControlFlow, ToDoData, ToDoItem } from "../App";
 import { toDoItem } from "../services/services";
 
@@ -9,17 +9,42 @@ export const AddTodoItem = () => {
   const [showDD, setShowDD] = useState(false);
   const [color, setColor] = useState("");
 
-  const initState = {
-    activity_group_id: 0,
-    title: "",
-    priority: "",
-  };
+  const initState = editItem
+    ? { title: "", is_active: 0, priority: "" }
+    : {
+        activity_group_id: 0,
+        title: "",
+        priority: "",
+      };
   const [item, setItem] = useState(initState);
+
+  const priorityColor = (name) => {
+    const color = {
+      "very-high": "#ED4C5C",
+      high: "#F8A541",
+      normal: "#00A790",
+      low: "#428BC1",
+      "very-low": "#8942C1",
+    };
+    return color[name];
+  };
+
+  useEffect(() => {
+    if (editItem) {
+      setItem({
+        title: todoItem.title,
+        is_active: todoItem.is_active,
+        priority: todoItem.priority,
+      });
+      setColor(priorityColor(todoItem.priority));
+      console.log(todoItem);
+    }
+  }, [editItem, todoItem]);
 
   const priorityList = [
     { name: "Very High", color: "#ED4C5C", value: "very-high" },
     { name: "High", color: "#F8A541", value: "high" },
-    { name: "Medium", color: "#00A790", value: "medium" },
+    { name: "Medium", color: "#00A790", value: "normal" },
     { name: "Low", color: "#428BC1", value: "low" },
     { name: "Very Low", color: "#8942C1", value: "very-low" },
   ];
@@ -35,16 +60,14 @@ export const AddTodoItem = () => {
     setShow(false);
   };
 
-  console.log(todoItem);
-
   return (
-    <form className="todo-form-container" onClick={(e) => e.stopPropagation()}>
+    <form id="todo-form-container" onClick={(e) => e.stopPropagation()}>
       <div className="todo-form-header">
         <h3>{editItem ? <>edit</> : <>tambah</>} list item</h3>
         <span onClick={() => setShow(false)}>x</span>
       </div>
       <hr />
-      <div id="add-item">
+      <div className="add-item">
         <label htmlFor="itemTitle">Nama List Item</label>
         <input
           id="itemTitle"
@@ -61,15 +84,7 @@ export const AddTodoItem = () => {
         />
         <div className="priority-dropdown-container">
           <label htmlFor="itemPriority">Priority</label>
-          <div
-            className="itemPriority-container"
-            style={{
-              display: "flex",
-              placeItems: "center",
-              border: "1px solid black",
-              overflow: "hidden",
-            }}
-          >
+          <div className="itemPriority-container">
             <span
               className="priority-dot"
               style={{
@@ -79,7 +94,7 @@ export const AddTodoItem = () => {
               }}
             />
             <input
-              style={{ flex: "0 1 100px", border: "none", width: "100px" }}
+              style={{ flex: "0 1 140px", border: "none", width: "140px" }}
               name="itemPriority"
               id="itemPriority"
               readOnly
@@ -101,16 +116,24 @@ export const AddTodoItem = () => {
           >
             {priorityList.map((data, i) => {
               return (
-                <div key={i} className="priority-dropdown-item">
+                <div
+                  key={i}
+                  className="priority-dropdown-item"
+                  onClick={() => {
+                    setItem({ ...item, priority: data.value });
+                    setColor(data.color);
+                    setShowDD(false);
+                  }}
+                >
                   <input
                     type="radio"
                     name="itemPriority"
                     id={data.value}
                     value={data.value}
-                    onChange={()=>{
-                      setItem({...item, priority: data.value});
+                    onChange={() => {
+                      setItem({ ...item, priority: data.value });
                       setColor(data.color);
-                      setShowDD(!showDD)
+                      setShowDD(false);
                     }}
                   />
                   <label htmlFor={data.value}>

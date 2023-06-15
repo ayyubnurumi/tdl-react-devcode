@@ -3,6 +3,7 @@ import del from "../assets/icon-delete.1e080ddb.svg";
 import edit from "../assets/icon-edit-p.4ebec345.svg";
 import { toDoItem } from "../services/services";
 import { ControlFlow, ToDoData, ToDoItem } from "../App";
+import Modal from "./Modal";
 
 export const TodoItem = () => {
   const { show, setShow, editItem, setEditItem } = useContext(ControlFlow);
@@ -37,6 +38,7 @@ export const TodoItem = () => {
         justifyContent: "space-between",
       }}
     >
+      <Modal />
       <div style={{ display: "flex", gap: "11px", placeItems: "center" }}>
         <input
           type="checkbox"

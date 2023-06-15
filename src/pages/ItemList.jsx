@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import edit from "../assets/icon-edit-p.4ebec345.svg";
 import emptyTodo from "../assets/todo-empty-state.png";
-import Modal from "../components/Modal";
+// import Modal from "../components/Modal";
 import { Sort } from "../components/Sort";
 
 import { TodoItem } from "../components/TodoItem";
@@ -74,7 +74,6 @@ export const ItemList = () => {
                   value={{ todoItem, setTodoItem, editItem, setEditItem }}
                 >
                   <TodoItem />
-                  <Modal />
                 </ToDoItem.Provider>
               </div>
             );

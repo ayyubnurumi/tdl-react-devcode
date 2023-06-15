@@ -139,25 +139,25 @@ main {
 /* #endregion --sort */
 
 /* #region --addItem */
-.todo-form-container {
+form#todo-form-container {
   width: 830px;
   height: 403px;
   background: #fff;
   border-radius: 11px;
 }
-.todo-form-header {
+div.todo-form-header {
   padding: 24px 40px 19px 28px;
   display: flex;
   justify-content: space-between;
   place-items: center;
 }
-div#add-item {
+div.add-item {
   padding: 38px 40px 23px 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-div#add-item input:focus {
+div.add-item input:focus {
   border: 1px solid #16abf8;
   outline: none;
 }
@@ -167,42 +167,48 @@ input#itemTitle {
   background: #ffffff;
   border: 1px solid #242424;
 }
-.priority-dropdown-container {
+div.priority-dropdown-container {
   width: 205px;
   display: flex;
   flex-direction: column;
   z-index: 4;
   position: relative;
 }
+div.itemPriority-container {
+    display: flex;
+    place-items: center;
+    border: 1px solid black;
+    overflow: hidden;
+}
 input#itemPriority {
   height: 52px;
   display: flex;
   place-items: center;
 }
-.priority-dropdown {
+div.priority-dropdown {
   position: absolute;
   top: 85px;
   background-color: #fff;
   border-radius: 5px;
 }
-.priority-dropdown-item {
+div.priority-dropdown-item {
   display: flex;
   place-items: center;
   width: 205px;
 }
-.priority-dropdown-item input[type="radio"] {
+div.priority-dropdown-item > input[type="radio"] {
   visibility: hidden;
 }
-.priority-dropdown-item label {
+div.priority-dropdown-item > label {
   display: flex;
   place-items: center;
   width: 100%;
 }
 .priority-dot {
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  margin-right: 9px;
+  margin-right: 10px;
 }
 /* #endregion --addItem */
 
