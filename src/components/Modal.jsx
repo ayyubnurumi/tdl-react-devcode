@@ -4,24 +4,27 @@ import { useContext } from "react";
 import { ControlFlow } from "../App";
 import { RemoveSucces } from "./RemoveSucces";
 
-const Modal = () => {
-  const { show, setShow, isRemove, removeSucces, setEditItem } = useContext(ControlFlow);
+const Modal = (prop) => {
+  const { isRemove, removeSucces, setEditItem } = useContext(ControlFlow);
   return (
     <div
       id="modal-container"
       style={{
-        display: show ? "flex" : "none",
+        display: prop.toggle.show ? "flex" : "none",
       }}
-      onClick={()=> {setShow(!show); setEditItem(false)}}
+      onClick={() => {
+        prop.toggle.setShow(!prop.toggle.show);
+        setEditItem(false);
+      }}
     >
       {isRemove ? (
         removeSucces ? (
           <RemoveSucces />
         ) : (
-          <ConfirmRemove />
+          <ConfirmRemove toggle={prop.toggle} />
         )
       ) : (
-        <AddTodoItem />
+        <AddTodoItem toggle={prop.toggle} />
       )}
     </div>
   );

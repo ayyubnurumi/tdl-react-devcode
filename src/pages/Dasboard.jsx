@@ -2,7 +2,6 @@ import { useEffect, useCallback, useContext, useState } from "react";
 import emptyActivity from "../assets/activity-empty-state.png";
 import ActivityCard from "../components/ActivityCard";
 import { activity } from "../services/services";
-import Modal from "../components/Modal";
 import { ActivityData, ControlFlow, ToDoData } from "../App";
 
 export const Dasboard = () => {
@@ -37,9 +36,8 @@ export const Dasboard = () => {
             return (
               <div id="activity-card-container" key={item.id}>
                 <ActivityData.Provider value={item}>
-                  <ActivityCard />
                   <ToDoData.Provider value={{ todo, setTodo }}>
-                    <Modal />
+                    <ActivityCard />
                   </ToDoData.Provider>
                 </ActivityData.Provider>
               </div>

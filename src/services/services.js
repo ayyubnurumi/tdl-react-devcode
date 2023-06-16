@@ -80,11 +80,12 @@ const createItem = (payload, actId, setData) => {
     });
 };
 
-const updateItem = ({ id }) => {
+const updateItem = (id, payload, actId, setData) => {
   axios
-    .patch(`todo-items/${id}`)
+    .patch(`todo-items/${id}`, payload)
     .then((res) => {
       console.log(res);
+      activityDetail(actId, setData)
     })
     .catch((err) => {
       console.error(err);

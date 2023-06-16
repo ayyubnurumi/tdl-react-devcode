@@ -3,8 +3,8 @@ import removeAlert from "../assets/icon-alert.8a9d9385.svg";
 import { activity } from "../services/services";
 import { useContext } from "react";
 
-const ConfirmRemove = () => {
-  const { isActivity, setShow, setRemoveSucces, setData } = useContext(ControlFlow);
+const ConfirmRemove = (prop) => {
+  const { isActivity, setRemoveSucces, setData } = useContext(ControlFlow);
   const data = useContext(ActivityData);
   const kinda = isActivity ? "activity" : "list item";
   return (
@@ -15,7 +15,10 @@ const ConfirmRemove = () => {
         <b>&ldquo;{data.title}&rdquo;?</b>
       </p>
       <div>
-        <button className="delete-cancel-btn" onClick={() => setShow(false)}>
+        <button
+          className="delete-cancel-btn"
+          onClick={() => prop.toggle.setShow(false)}
+        >
           batal
         </button>
         <button

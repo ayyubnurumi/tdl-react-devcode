@@ -13,7 +13,6 @@ function App() {
   const [isActivity, setIsActivity] = useState(true);
   const [isRemove, setIsRemove] = useState(false);
   const [removeSucces, setRemoveSucces] = useState(false);
-  const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
   const [editItem, setEditItem] = useState(false);
   const [todoItem, setTodoItem] = useState({
@@ -42,8 +41,6 @@ function App() {
             setIsRemove,
             removeSucces,
             setRemoveSucces,
-            show,
-            setShow,
             data,
             setData,
             editItem,

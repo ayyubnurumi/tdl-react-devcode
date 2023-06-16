@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import edit from "../assets/icon-edit-p.4ebec345.svg";
 import emptyTodo from "../assets/todo-empty-state.png";
-// import Modal from "../components/Modal";
+import Modal from "../components/Modal";
 import { Sort } from "../components/Sort";
 
 import { TodoItem } from "../components/TodoItem";
@@ -10,9 +10,11 @@ import { useParams } from "react-router-dom";
 import { activity } from "../services/services";
 
 export const ItemList = () => {
-  const { show, setShow, editItem, setEditItem } = useContext(ControlFlow);
+  const { editItem, setEditItem } = useContext(ControlFlow);
   const { setTodoItem } = useContext(ToDoItem);
   const [update, setUpdate] = useState(false);
+  const [show, setShow] = useState(false);
+
   const { actId } = useParams();
 
   const [todo, setTodo] = useState({
@@ -37,6 +39,7 @@ export const ItemList = () => {
 
   return (
     <ToDoData.Provider value={{ todo, setTodo }}>
+      <Modal toggle={{show, setShow}} />
       <div className="section-header">
         <div style={{ display: "flex", gap: "20px", placeItems: "center" }}>
           <span>&lt;</span>

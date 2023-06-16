@@ -6,9 +6,10 @@ import { ControlFlow, ToDoData, ToDoItem } from "../App";
 import Modal from "./Modal";
 
 export const TodoItem = () => {
-  const { show, setShow, editItem, setEditItem } = useContext(ControlFlow);
+  const { editItem, setEditItem } = useContext(ControlFlow);
   const { setTodo } = useContext(ToDoData);
   const { todoItem } = useContext(ToDoItem);
+  const [show, setShow] = useState(false);
   const priorityColor = (name) => {
     const color = {
       "very-high": "#ED4C5C",
@@ -38,7 +39,7 @@ export const TodoItem = () => {
         justifyContent: "space-between",
       }}
     >
-      <Modal />
+      <Modal toggle={{ show, setShow }} />
       <div style={{ display: "flex", gap: "11px", placeItems: "center" }}>
         <input
           type="checkbox"
@@ -67,6 +68,7 @@ export const TodoItem = () => {
         <img
           src={edit}
           alt="edit-btn"
+          aria-disabled
           onClick={() => {
             setShow(!show);
             setEditItem(!editItem);

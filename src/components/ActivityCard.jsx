@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import del from "../assets/icon-delete.1e080ddb.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ActivityData, ControlFlow } from "../App";
+import Modal from "./Modal";
 
 const ActivityCard = () => {
-  const data = useContext(ActivityData);
   const nav = useNavigate();
-  const { setShow, setIsActivity, setIsRemove } = useContext(ControlFlow);
+  const data = useContext(ActivityData);
+  const { setIsActivity, setIsRemove } = useContext(ControlFlow);
+  const [show, setShow] = useState(false);
+
   const tanggal = new Date(data.created_at).toLocaleDateString("id-ID", {
     // weekday: "long",
     year: "numeric",
@@ -34,6 +37,7 @@ const ActivityCard = () => {
           }}
         />
       </div>
+      <Modal toggle={{show, setShow}} />
     </div>
   );
 };

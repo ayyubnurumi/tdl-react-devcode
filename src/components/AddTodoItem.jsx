@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { ControlFlow, ToDoData, ToDoItem } from "../App";
 import { toDoItem } from "../services/services";
 
-export const AddTodoItem = () => {
-  const { setShow, editItem, setEditItem } = useContext(ControlFlow);
+export const AddTodoItem = (prop) => {
+  const { editItem, setEditItem } = useContext(ControlFlow);
   const { todo, setTodo } = useContext(ToDoData);
   const { todoItem } = useContext(ToDoItem);
   const [showDD, setShowDD] = useState(false);
@@ -51,20 +51,21 @@ export const AddTodoItem = () => {
 
   const onSubmit = () => {
     toDoItem.createItem(item, todo.id, setTodo);
-    setShow(false);
+    prop.toggle.setShow(false);
   };
 
   const onEdit = () => {
+    toDoItem.updateItem(todoItem.id, item, todoItem.activity_group_id, setTodo);
     console.log(item);
     setEditItem(false);
-    setShow(false);
+    prop.toggle.setShow(false);
   };
 
   return (
     <form id="todo-form-container" onClick={(e) => e.stopPropagation()}>
       <div className="todo-form-header">
         <h3>{editItem ? <>edit</> : <>tambah</>} list item</h3>
-        <span onClick={() => setShow(false)}>x</span>
+        <span onClick={() => prop.toggle.setShow(false)}>x</span>
       </div>
       <hr />
       <div className="add-item">
