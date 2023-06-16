@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import del from "../assets/icon-delete.1e080ddb.svg";
 import edit from "../assets/icon-edit-p.4ebec345.svg";
 import { toDoItem } from "../services/services";
@@ -26,6 +26,14 @@ export const TodoItem = () => {
     is_active: todoItem.is_active ? true : false,
     priority: todoItem.priority,
   });
+
+  useEffect(() => {
+    setItem({
+      title: todoItem.title,
+      is_active: todoItem.is_active ? true : false,
+      priority: todoItem.priority,
+    })
+  }, [todoItem]);
 
   return (
     <div
