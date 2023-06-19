@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import { useContext } from "react";
 import { ControlFlow } from "../App";
 import alertIcon from "../assets/icon-alert-sm.1484df0d.svg";
