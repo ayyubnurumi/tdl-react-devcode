@@ -5,7 +5,7 @@ import { ControlFlow } from "../App";
 import { RemoveSucces } from "./RemoveSucces";
 
 const Modal = (prop) => {
-  const { isRemove, removeSucces, setEditItem } = useContext(ControlFlow);
+  const { isRemove, removeSucces, setRemoveSucces, setEditItem } = useContext(ControlFlow);
   return (
     <div
       id="modal-container"
@@ -15,6 +15,7 @@ const Modal = (prop) => {
       onClick={() => {
         prop.toggle.setShow(!prop.toggle.show);
         setEditItem(false);
+        setRemoveSucces(false);
       }}
     >
       {isRemove ? (

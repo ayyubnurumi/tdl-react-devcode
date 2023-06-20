@@ -6,7 +6,7 @@ import { ControlFlow, ToDoData, ToDoItem } from "../App";
 import Modal from "./Modal";
 
 export const TodoItem = () => {
-  const { editItem, setEditItem } = useContext(ControlFlow);
+  const { editItem, setEditItem, setIsRemove, setIsActivity } = useContext(ControlFlow);
   const { setTodo } = useContext(ToDoData);
   const { todoItem } = useContext(ToDoItem);
   const [show, setShow] = useState(false);
@@ -86,9 +86,11 @@ export const TodoItem = () => {
       <img
         src={del}
         alt="delete-btn"
-        onClick={() =>
-          toDoItem.removeItem(todoItem.id, todoItem.activity_group_id, setTodo)
-        }
+        onClick={() =>{
+          setIsRemove(true);
+          setIsActivity(false)
+          // toDoItem.removeItem(todoItem.id, todoItem.activity_group_id, setTodo)
+        }}
       />
     </div>
   );
