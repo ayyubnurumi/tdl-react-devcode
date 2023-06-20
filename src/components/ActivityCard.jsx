@@ -11,34 +11,35 @@ const ActivityCard = () => {
   const [show, setShow] = useState(false);
 
   const tanggal = new Date(data.created_at).toLocaleDateString("id-ID", {
-    // weekday: "long",
     year: "numeric",
     month: "short",
     day: "numeric",
   });
   return (
-    <div
-      id="activity-card"
-      onClick={() => {
-        nav(`item-list/${data.id}`), setIsActivity(false);
-      }}
-    >
-      <h3>{data.title}</h3>
-      <div>
-        <p>{tanggal}</p>
-        <img
-          id="delete-activity-btn"
-          src={del}
-          alt="delete"
-          onClick={(e) => {
-            e.stopPropagation();
-            setShow(true);
-            setIsRemove(true);
-          }}
-        />
+    <>
+      <Modal toggle={{ show, setShow }} />
+      <div
+        id="activity-card"
+        onClick={() => {
+          nav(`item-list/${data.id}`), setIsActivity(false);
+        }}
+      >
+        <h3>{data.title}</h3>
+        <div>
+          <p>{tanggal}</p>
+          <img
+            id="delete-activity-btn"
+            src={del}
+            alt="delete"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShow(true);
+              setIsRemove(true);
+            }}
+          />
+        </div>
       </div>
-      <Modal toggle={{show, setShow}} />
-    </div>
+    </>
   );
 };
 

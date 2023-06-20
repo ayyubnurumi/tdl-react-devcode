@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import del from "../assets/icon-delete.1e080ddb.svg";
 import edit from "../assets/icon-edit-p.4ebec345.svg";
-import { toDoItem } from "../services/services";
-import { ControlFlow, ToDoData, ToDoItem } from "../App";
+import { ControlFlow, ToDoItem } from "../App";
 import Modal from "./Modal";
 
 export const TodoItem = () => {
-  const { editItem, setEditItem, setIsRemove, setIsActivity } = useContext(ControlFlow);
-  const { setTodo } = useContext(ToDoData);
+  const { editItem, setEditItem, setIsRemove, setIsActivity } =
+    useContext(ControlFlow);
   const { todoItem } = useContext(ToDoItem);
   const [show, setShow] = useState(false);
   const priorityColor = (name) => {
@@ -32,7 +31,7 @@ export const TodoItem = () => {
       title: todoItem.title,
       is_active: todoItem.is_active ? true : false,
       priority: todoItem.priority,
-    })
+    });
   }, [todoItem]);
 
   return (
@@ -86,10 +85,10 @@ export const TodoItem = () => {
       <img
         src={del}
         alt="delete-btn"
-        onClick={() =>{
+        onClick={() => {
+          setShow(true);
           setIsRemove(true);
-          setIsActivity(false)
-          // toDoItem.removeItem(todoItem.id, todoItem.activity_group_id, setTodo)
+          setIsActivity(false);
         }}
       />
     </div>
