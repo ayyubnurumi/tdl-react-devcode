@@ -72,15 +72,16 @@ export const TodoItem = () => {
         >
           {item.title}
         </p>
-        <img
-          src={edit}
-          alt="edit-btn"
-          aria-disabled
+        <button
+          disabled={!item.is_active}
           onClick={() => {
             setShow(!show);
             setEditItem(!editItem);
           }}
-        />
+          style={{border: "none", background: "none", cursor: "pointer"}}
+        >
+          <img src={edit} alt="edit-btn" />
+        </button>
       </div>
       <img
         src={del}

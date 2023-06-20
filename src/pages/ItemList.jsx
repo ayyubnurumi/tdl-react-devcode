@@ -72,7 +72,7 @@ export const ItemList = () => {
         {todo.todo_items.length > 0 ? (
           todo.todo_items.map((todoItem) => {
             return (
-              <div key={todoItem.id}>
+              <div key={todoItem.id} style={{width: "100%"}}>
                 <ToDoItem.Provider
                   value={{ todoItem, setTodoItem, editItem, setEditItem }}
                 >
