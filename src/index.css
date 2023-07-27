@@ -53,7 +53,8 @@ main {
   justify-content: space-between;
   margin: 40px 0;
 }
-.section-title {
+.section-title,
+.section-header > .itemlist-title > span {
   font-size: 36px;
   font-weight: 700;
 }
@@ -105,6 +106,38 @@ main {
 /* #endregion --app */
 
 /* #region --itemlist */
+
+.section-header > .itemlist-title {
+  display: flex;
+  gap: 20px;
+  place-items: center;
+}
+.section-header > .itemlist-title > span,
+.section-header > .itemlist-title > img {
+  cursor: pointer;
+}
+.section-header > .itemlist-title > form {
+  min-width: 40vw;
+  display: flex;
+  gap: 10px;
+}
+.section-header > .itemlist-title > form > input {
+  flex: 1 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #242424;
+  outline: none;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #242424;
+}
+.section-header > .itemlist-title > form > button {
+  flex: 0 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 /* #region --sort */
 .dropdown {
   position: relative;
@@ -124,17 +157,22 @@ main {
   flex-direction: column;
   width: 235px;
   height: 260px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #E5E5E5;
 }
 .dropdown-content > button {
   flex: 1 1;
-  border-radius: 0;
+  border: none;
+  border-top: 1px solid #E5E5E5;
   padding-inline: 17px;
-  border: 1px solid #e5e5e5;
-  background: #fff;
+  background: transparent;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 17px;
+  font-size: 16px;
+  font-weight: 400;
 }
 /* #endregion --sort */
 
@@ -157,7 +195,7 @@ div.add-item {
   flex-direction: column;
   gap: 10px;
 }
-div.add-item input:focus {
+div.add-item input#itemTitle:focus {
   border: 1px solid #16abf8;
   outline: none;
 }
@@ -165,7 +203,9 @@ input#itemTitle {
   height: 52px;
   border-radius: 6px;
   background: #ffffff;
-  border: 1px solid #242424;
+  border: 1px solid #E5E5E5;
+  padding: 14px 18px;
+  font-size: 16px;
 }
 div.priority-dropdown-container {
   width: 205px;
@@ -174,29 +214,48 @@ div.priority-dropdown-container {
   z-index: 4;
   position: relative;
 }
-div.itemPriority-container {
-    display: flex;
-    place-items: center;
-    border: 1px solid black;
-    overflow: hidden;
+.itemPriority-container {
+  display: flex;
+  place-items: center;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid #E5E5E5;
 }
-input#itemPriority {
+.itemPriority-container > span.priority-dot {
+  flex: 0 0 10px;
+  margin: 10px;
+}
+.itemPriority-container > input#itemPriority {
+  flex: 1 1;
   height: 52px;
-  display: flex;
-  place-items: center;
+  width: 100px;
+  border: none;
+  text-transform: capitalize;
+  font-size: .9rem;
+  font-weight: 400;
 }
-div.priority-dropdown {
+.itemPriority-container > input#itemPriority:focus {
+  outline: none;
+}
+.itemPriority-container > span {
+  flex: 0 0;
+  margin: 15px;
+}
+.priority-dropdown {
   position: absolute;
-  top: 85px;
+  top: 80px;
   background-color: #fff;
-  border-radius: 5px;
+  border: 1px solid #E5E5E5;
+  border-top: none;
+  width: 205px;
+  border-radius: 0 0 6px 6px;
 }
-div.priority-dropdown-item {
+.priority-dropdown-item {
   display: flex;
   place-items: center;
-  width: 205px;
+  padding: 7px 0;
+  border-top: 1px solid #E5E5E5;
 }
-div.priority-dropdown-item > input[type="radio"] {
+.priority-dropdown-item > input[type="radio"] {
   visibility: hidden;
 }
 div.priority-dropdown-item > label {

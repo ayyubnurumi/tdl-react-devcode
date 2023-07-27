@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       <nav id="header">
-        <img src={title} alt="title" data-cy="header-title" />
+          <img src={title} alt="title" data-cy="header-title" />
       </nav>
       <main>
         <ControlFlow.Provider

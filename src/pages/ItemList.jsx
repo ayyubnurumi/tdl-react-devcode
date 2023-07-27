@@ -6,10 +6,12 @@ import { Sort } from "../components/Sort";
 
 import { TodoItem } from "../components/TodoItem";
 import { ControlFlow, ToDoData, ToDoItem } from "../App";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { activity } from "../services/services";
 
 export const ItemList = () => {
+const nav = useNavigate()
+
   const { editItem, setEditItem } = useContext(ControlFlow);
   const { setTodoItem } = useContext(ToDoItem);
   const [update, setUpdate] = useState(false);
@@ -41,10 +43,10 @@ export const ItemList = () => {
     <ToDoData.Provider value={{ todo, setTodo }}>
       <Modal toggle={{show, setShow}} />
       <div className="section-header">
-        <div style={{ display: "flex", gap: "20px", placeItems: "center" }}>
-          <span>&lt;</span>
+        <div className="itemlist-title">
+          <span onClick={()=> nav('/')}>&lt;</span>
           {update ? (
-            <form action="">
+            <form>
               <input
                 type="text"
                 value={todo.title}

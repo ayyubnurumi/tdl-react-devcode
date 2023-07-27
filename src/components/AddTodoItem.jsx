@@ -89,13 +89,10 @@ export const AddTodoItem = (prop) => {
             <span
               className="priority-dot"
               style={{
-                background: color,
-                margin: "10px",
-                flex: "0 0 9px",
+                background: color
               }}
             />
             <input
-              style={{ flex: "0 1 140px", border: "none", width: "140px" }}
               name="itemPriority"
               id="itemPriority"
               readOnly
@@ -159,7 +156,7 @@ export const AddTodoItem = (prop) => {
         className="add-btn"
         style={{ margin: "15px 40px 19px auto", float: "right" }}
         onClick={editItem ? onEdit : onSubmit}
-      />
+      >simpan</button>
     </form>
   );
 };
