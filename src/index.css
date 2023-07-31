@@ -149,6 +149,7 @@ main {
   border-radius: 50px;
   cursor: pointer;
   z-index: 0;
+  border: 1px solid #E5E5E5;;
 }
 .dropdown-content {
   display: flex;
